@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 import re
+import time
 from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget
 import startScreenUi
 
@@ -23,6 +24,12 @@ def back_to_start():
 def validate_student_connection():
     name = ui.textEdit_name.toPlainText()
     connection_details = ui.textEdit_conn.toPlainText()
+    print(student_name_validation(name))
+    if student_name_validation(name) == False:
+        ui.textEdit_name.setText("")
+        ui.textEdit_name.setPlaceholderText("Invalid name...")
+    else:
+        ui.textEdit_name.setPlaceholderText("")
 
 ui.submit_button.clicked.connect(validate_student_connection)
 ui.student_button.clicked.connect(student_registration_toggle)

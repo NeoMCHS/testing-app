@@ -103,6 +103,7 @@ class Ui_StackedWidget(object):
         self.textEdit_name.setFont(font)
         self.textEdit_name.setStyleSheet(u"background-color: rgb(97, 97, 97);\n"
 "color: rgb(255, 255, 255);")
+        self.textEdit_name.setPlaceholderText(u"")
         self.connection_label = QLabel(self.widget)
         self.connection_label.setObjectName(u"connection_label")
         self.connection_label.setGeometry(QRect(100, 130, 201, 31))
@@ -126,6 +127,13 @@ class Ui_StackedWidget(object):
         self.back_button.setFont(font1)
         self.back_button.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(70, 70, 70);")
+        self.name_descriptor = QLabel(self.widget)
+        self.name_descriptor.setObjectName(u"name_descriptor")
+        self.name_descriptor.setGeometry(QRect(100, 100, 201, 31))
+        font2 = QFont()
+        font2.setPointSize(9)
+        self.name_descriptor.setFont(font2)
+        self.name_descriptor.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.gridLayout.addWidget(self.widget, 0, 0, 1, 1)
 
@@ -147,5 +155,7 @@ class Ui_StackedWidget(object):
         self.connection_label.setText(QCoreApplication.translate("StackedWidget", u"Connection ID:", None))
         self.submit_button.setText(QCoreApplication.translate("StackedWidget", u"Submit", None))
         self.back_button.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))
+        self.name_descriptor.setText(QCoreApplication.translate("StackedWidget", u"Must insclude only latin letters and be\n"
+"between 2 and 25 characters", None))
     # retranslateUi
 
