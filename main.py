@@ -10,7 +10,6 @@ ui.setupUi(window)
 
 def student_registration():
     window.setCurrentIndex(1)
-    print(ui.pushButton_2.text())
 
 ui.pushButton_2.clicked.connect(student_registration)
 
