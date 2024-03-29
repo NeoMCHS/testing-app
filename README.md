@@ -19,4 +19,4 @@ A project. For school.
 
 ### Frameworks
 1. Flask
-2. PyQt5
+2. PySide6
