@@ -4,6 +4,9 @@ A project. For school.
 ### Come up with
 1. Coherent schema for JSON
 
+### Research
+1. How to set up the resizing of windows properly in Qt
+
 ### GUI
 1. Realise creation of tests
 2. Create a main screen. With access to student and teacher functionality.
@@ -19,4 +22,4 @@ A project. For school.
 
 ### Frameworks
 1. Flask
-2. PyQt5
+2. PySide6
