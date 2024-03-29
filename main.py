@@ -1,20 +1,18 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import QFile
-import ui_mainwindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget
+import startScreenUi
 
-ui = ui_mainwindow.Ui_MainWindow()
+ui = startScreenUi.Ui_StackedWidget()
 app = QApplication(sys.argv)
-window = QMainWindow()
+window = QStackedWidget()
 ui.setupUi(window)
 
 def student_registration():
-    ui.stackedWidget.setCurrentIndex(1)
-    print(ui.student_button.text())
+    window.setCurrentIndex(1)
+    print(ui.pushButton_2.text())
 
-ui.student_button.clicked.connect(student_registration)
+ui.pushButton_2.clicked.connect(student_registration)
 
 if __name__ == "__main__":
     window.show()
