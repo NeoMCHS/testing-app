@@ -11,9 +11,9 @@ window = QStackedWidget()
 ui.setupUi(window)
 
 def student_name_validation(name: str):
-    if re.fullmatch(r"[a-zA-Z]{2, 20}", name):
-        return True
-    return False
+    if re.fullmatch('[A-Za-z]{2,25}', name) == None:
+        return False
+    return True
 
 def student_registration_toggle():
     window.setCurrentIndex(1)
