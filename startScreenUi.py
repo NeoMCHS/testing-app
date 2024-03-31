@@ -141,7 +141,7 @@ class Ui_StackedWidget(object):
 
         self.retranslateUi(StackedWidget)
 
-        StackedWidget.setCurrentIndex(1)
+        StackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(StackedWidget)
