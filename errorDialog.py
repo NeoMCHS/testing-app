@@ -43,6 +43,7 @@ class Ui_dialog(object):
         self.description_label.setObjectName(u"description_label")
         self.description_label.setGeometry(QRect(50, 60, 281, 81))
         self.description_label.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.description_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.description_label.setWordWrap(True)
 
         self.retranslateUi(dialog)

@@ -1,7 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import sys
 import re
-import time
 from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QDialog
 import startScreenUi
 import errorDialog
@@ -10,8 +9,8 @@ error_dialog_ui = errorDialog.Ui_dialog()
 start_window_ui = startScreenUi.Ui_StackedWidget()
 app = QApplication(sys.argv)
 dialog_window = QDialog()
-window = QStackedWidget()
-start_window_ui.setupUi(window)
+start_window = QStackedWidget()
+start_window_ui.setupUi(start_window)
 
 def student_name_validation(name: str):
     if re.fullmatch('[A-Za-z]{2,25}', name) == None:
@@ -19,10 +18,10 @@ def student_name_validation(name: str):
     return True
 
 def student_registration_toggle():
-    window.setCurrentIndex(1)
+    start_window.setCurrentIndex(1)
 
 def back_to_start():
-    window.setCurrentIndex(0)
+    start_window.setCurrentIndex(0)
 
 def validate_student_connection():
     name = start_window_ui.textEdit_name.toPlainText()
@@ -44,7 +43,7 @@ start_window_ui.student_button.clicked.connect(student_registration_toggle)
 start_window_ui.back_button.clicked.connect(back_to_start)
 
 if __name__ == "__main__":
-    window.show()
-    window.setCurrentIndex(0)
+    start_window.show()
+    start_window.setCurrentIndex(0)
     app.exec()
     sys.exit(app.exec())
