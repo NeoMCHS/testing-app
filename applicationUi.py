@@ -90,20 +90,16 @@ class Ui_StackedWidget(object):
         self.dockWidget = QDockWidget(self.test_editor)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setStyleSheet(u"background-color: rgb(48, 48, 48);")
+        self.dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.gridLayout_2 = QGridLayout(self.dockWidgetContents)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.scrollArea = QScrollArea(self.dockWidgetContents)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setMinimumSize(QSize(500, 0))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 477))
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.widget_2 = QWidget(self.dockWidgetContents)
+        self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setMinimumSize(QSize(0, 35))
 
-        self.gridLayout_2.addWidget(self.scrollArea, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.widget_2, 1, 0, 1, 2)
 
         self.tabWidget = QTabWidget(self.dockWidgetContents)
         self.tabWidget.setObjectName(u"tabWidget")
@@ -116,24 +112,40 @@ class Ui_StackedWidget(object):
         self.tab_2.setObjectName(u"tab_2")
         self.tabWidget.addTab(self.tab_2, "")
 
-        self.gridLayout_2.addWidget(self.tabWidget, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.tabWidget, 2, 0, 1, 1)
 
-        self.widget_2 = QWidget(self.dockWidgetContents)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(0, 35))
+        self.scrollArea = QScrollArea(self.dockWidgetContents)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setMinimumSize(QSize(500, 0))
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 455))
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        self.gridLayout_2.addWidget(self.widget_2, 0, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.scrollArea, 2, 1, 1, 1)
+
+        self.back_button_editor = QPushButton(self.dockWidgetContents)
+        self.back_button_editor.setObjectName(u"back_button_editor")
+        self.back_button_editor.setMaximumSize(QSize(70, 20))
+        font = QFont()
+        font.setPointSize(11)
+        self.back_button_editor.setFont(font)
+        self.back_button_editor.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"background-color: rgb(70, 70, 70);")
+
+        self.gridLayout_2.addWidget(self.back_button_editor, 0, 0, 1, 1)
 
         self.dockWidget.setWidget(self.dockWidgetContents)
 
         self.horizontalLayout_2.addWidget(self.dockWidget)
 
         StackedWidget.addWidget(self.test_editor)
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.gridLayout = QGridLayout(self.page_2)
+        self.student_registration = QWidget()
+        self.student_registration.setObjectName(u"student_registration")
+        self.gridLayout = QGridLayout(self.student_registration)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.widget = QWidget(self.page_2)
+        self.widget = QWidget(self.student_registration)
         self.widget.setObjectName(u"widget")
         self.widget.setMaximumSize(QSize(400, 260))
         self.widget.setStyleSheet(u"background-color: rgb(48, 48, 48);")
@@ -144,10 +156,10 @@ class Ui_StackedWidget(object):
         self.textEdit_name = QTextEdit(self.widget)
         self.textEdit_name.setObjectName(u"textEdit_name")
         self.textEdit_name.setGeometry(QRect(100, 70, 200, 30))
-        font = QFont()
-        font.setFamilies([u"Impact"])
-        font.setPointSize(15)
-        self.textEdit_name.setFont(font)
+        font1 = QFont()
+        font1.setFamilies([u"Impact"])
+        font1.setPointSize(15)
+        self.textEdit_name.setFont(font1)
         self.textEdit_name.setStyleSheet(u"background-color: rgb(97, 97, 97);\n"
 "color: rgb(255, 255, 255);")
         self.textEdit_name.setPlaceholderText(u"")
@@ -158,7 +170,7 @@ class Ui_StackedWidget(object):
         self.textEdit_conn = QTextEdit(self.widget)
         self.textEdit_conn.setObjectName(u"textEdit_conn")
         self.textEdit_conn.setGeometry(QRect(100, 160, 200, 30))
-        self.textEdit_conn.setFont(font)
+        self.textEdit_conn.setFont(font1)
         self.textEdit_conn.setStyleSheet(u"background-color: rgb(97, 97, 97);\n"
 "color: rgb(255, 255, 255);")
         self.submit_button = QPushButton(self.widget)
@@ -166,13 +178,11 @@ class Ui_StackedWidget(object):
         self.submit_button.setGeometry(QRect(140, 210, 113, 32))
         self.submit_button.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(70, 70, 70);")
-        self.back_button = QPushButton(self.widget)
-        self.back_button.setObjectName(u"back_button")
-        self.back_button.setGeometry(QRect(10, 10, 70, 20))
-        font1 = QFont()
-        font1.setPointSize(11)
-        self.back_button.setFont(font1)
-        self.back_button.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+        self.back_button_student = QPushButton(self.widget)
+        self.back_button_student.setObjectName(u"back_button_student")
+        self.back_button_student.setGeometry(QRect(10, 10, 70, 20))
+        self.back_button_student.setFont(font)
+        self.back_button_student.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(70, 70, 70);")
         self.name_descriptor = QLabel(self.widget)
         self.name_descriptor.setObjectName(u"name_descriptor")
@@ -184,7 +194,7 @@ class Ui_StackedWidget(object):
 
         self.gridLayout.addWidget(self.widget, 0, 0, 1, 1)
 
-        StackedWidget.addWidget(self.page_2)
+        StackedWidget.addWidget(self.student_registration)
 
         self.retranslateUi(StackedWidget)
 
@@ -200,10 +210,11 @@ class Ui_StackedWidget(object):
         self.student_button.setText(QCoreApplication.translate("StackedWidget", u"I am a student", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("StackedWidget", u"Tab 1", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("StackedWidget", u"Tab 2", None))
+        self.back_button_editor.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))
         self.name_label.setText(QCoreApplication.translate("StackedWidget", u"Name:", None))
         self.connection_label.setText(QCoreApplication.translate("StackedWidget", u"Connection ID:", None))
         self.submit_button.setText(QCoreApplication.translate("StackedWidget", u"Submit", None))
-        self.back_button.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))
+        self.back_button_student.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))
         self.name_descriptor.setText(QCoreApplication.translate("StackedWidget", u"Must insclude only latin letters and be\n"
 "between 2 and 25 characters", None))
     # retranslateUi

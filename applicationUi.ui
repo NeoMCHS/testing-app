@@ -164,32 +164,22 @@ color: white</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(48, 48, 48);</string>
       </property>
+      <property name="features">
+       <set>QDockWidget::NoDockWidgetFeatures</set>
+      </property>
       <widget class="QWidget" name="dockWidgetContents">
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="1">
-         <widget class="QScrollArea" name="scrollArea">
+        <item row="1" column="0" colspan="2">
+         <widget class="QWidget" name="widget_2" native="true">
           <property name="minimumSize">
            <size>
-            <width>500</width>
-            <height>0</height>
+            <width>0</width>
+            <height>35</height>
            </size>
           </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>498</width>
-             <height>477</height>
-            </rect>
-           </property>
-          </widget>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QTabWidget" name="tabWidget">
           <property name="minimumSize">
            <size>
@@ -215,13 +205,48 @@ color: white</string>
           </widget>
          </widget>
         </item>
-        <item row="0" column="0" colspan="2">
-         <widget class="QWidget" name="widget_2" native="true">
+        <item row="2" column="1">
+         <widget class="QScrollArea" name="scrollArea">
           <property name="minimumSize">
            <size>
-            <width>0</width>
-            <height>35</height>
+            <width>500</width>
+            <height>0</height>
            </size>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>498</width>
+             <height>455</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="back_button_editor">
+          <property name="maximumSize">
+           <size>
+            <width>70</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);</string>
+          </property>
+          <property name="text">
+           <string>&lt; Back</string>
           </property>
          </widget>
         </item>
@@ -231,7 +256,7 @@ color: white</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="page_2">
+  <widget class="QWidget" name="student_registration">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QWidget" name="widget" native="true">
@@ -336,7 +361,7 @@ background-color: rgb(70, 70, 70);</string>
         <string>Submit</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="back_button">
+      <widget class="QPushButton" name="back_button_student">
        <property name="geometry">
         <rect>
          <x>10</x>

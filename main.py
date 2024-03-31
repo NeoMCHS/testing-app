@@ -48,7 +48,8 @@ def show_error_dialog(header: str, message: str):
 main_ui.teacher_button.clicked.connect(launch_test_editor)
 main_ui.submit_button.clicked.connect(validate_student_connection)
 main_ui.student_button.clicked.connect(student_registration_toggle)
-main_ui.back_button.clicked.connect(back_to_start)
+main_ui.back_button_student.clicked.connect(back_to_start)
+main_ui.back_button_editor.clicked.connect(back_to_start)
 
 if __name__ == "__main__":
     main_window.show()
