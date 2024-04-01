@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QDockWidget, QGridLayout, QHBoxLayout,
     QLabel, QPushButton, QScrollArea, QSizePolicy,
     QSpacerItem, QStackedWidget, QTabWidget, QTextEdit,
-    QWidget)
+    QVBoxLayout, QWidget)
 
 class Ui_StackedWidget(object):
     def setupUi(self, StackedWidget):
@@ -54,7 +54,7 @@ class Ui_StackedWidget(object):
         self.teacher_button.setMinimumSize(QSize(320, 160))
         self.teacher_button.setMaximumSize(QSize(16777215, 200))
         self.teacher_button.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.980296, y2:0.972, stop:0 rgba(33, 33, 33, 255), stop:1 rgba(93, 82, 120, 255));\n"
-"border-color: rgb(13, 3, 16);\n"
+"background-color: rgb(70, 70, 70);\n"
 "color: white")
 
         self.horizontalLayout.addWidget(self.teacher_button)
@@ -73,7 +73,8 @@ class Ui_StackedWidget(object):
         self.student_button.setMinimumSize(QSize(320, 160))
         self.student_button.setMaximumSize(QSize(16777215, 200))
         self.student_button.setBaseSize(QSize(320, 160))
-        self.student_button.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.980296, y2:0.972, stop:0 rgba(33, 33, 33, 255), stop:1 rgba(93, 82, 120, 255));\n"
+        self.student_button.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(206, 235, 106, 255), stop:1 rgba(255, 86, 86, 255));\n"
+"background-color: rgb(70, 70, 70);\n"
 "color: white")
 
         self.horizontalLayout.addWidget(self.student_button)
@@ -95,24 +96,25 @@ class Ui_StackedWidget(object):
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.gridLayout_2 = QGridLayout(self.dockWidgetContents)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.widget_2 = QWidget(self.dockWidgetContents)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(0, 35))
-
-        self.gridLayout_2.addWidget(self.widget_2, 1, 0, 1, 2)
-
         self.tabWidget = QTabWidget(self.dockWidgetContents)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setMinimumSize(QSize(200, 0))
         self.tabWidget.setMaximumSize(QSize(300, 16777215))
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
+        self.gridLayout_3 = QGridLayout(self.tab)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.addSingleButton = QPushButton(self.tab)
+        self.addSingleButton.setObjectName(u"addSingleButton")
+
+        self.gridLayout_3.addWidget(self.addSingleButton, 0, 0, 1, 1)
+
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.tabWidget.addTab(self.tab_2, "")
 
-        self.gridLayout_2.addWidget(self.tabWidget, 2, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.tabWidget, 1, 0, 1, 1)
 
         self.scrollArea = QScrollArea(self.dockWidgetContents)
         self.scrollArea.setObjectName(u"scrollArea")
@@ -120,12 +122,24 @@ class Ui_StackedWidget(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 455))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 468))
+        self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.test_area = QVBoxLayout()
+        self.test_area.setObjectName(u"test_area")
+
+        self.verticalLayout.addLayout(self.test_area)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        self.gridLayout_2.addWidget(self.scrollArea, 2, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.scrollArea, 1, 1, 1, 1)
 
-        self.back_button_editor = QPushButton(self.dockWidgetContents)
+        self.widget_2 = QWidget(self.dockWidgetContents)
+        self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setMinimumSize(QSize(0, 35))
+        self.horizontalLayout_4 = QHBoxLayout(self.widget_2)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.back_button_editor = QPushButton(self.widget_2)
         self.back_button_editor.setObjectName(u"back_button_editor")
         self.back_button_editor.setMaximumSize(QSize(70, 20))
         font = QFont()
@@ -134,7 +148,19 @@ class Ui_StackedWidget(object):
         self.back_button_editor.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(70, 70, 70);")
 
-        self.gridLayout_2.addWidget(self.back_button_editor, 0, 0, 1, 1)
+        self.horizontalLayout_4.addWidget(self.back_button_editor)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_4)
+
+        self.pushButton = QPushButton(self.widget_2)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.horizontalLayout_4.addWidget(self.pushButton)
+
+
+        self.gridLayout_2.addWidget(self.widget_2, 0, 0, 1, 2)
 
         self.dockWidget.setWidget(self.dockWidgetContents)
 
@@ -199,6 +225,7 @@ class Ui_StackedWidget(object):
         self.retranslateUi(StackedWidget)
 
         StackedWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(StackedWidget)
@@ -208,9 +235,12 @@ class Ui_StackedWidget(object):
         StackedWidget.setWindowTitle(QCoreApplication.translate("StackedWidget", u"StackedWidget", None))
         self.teacher_button.setText(QCoreApplication.translate("StackedWidget", u"I am a teacher", None))
         self.student_button.setText(QCoreApplication.translate("StackedWidget", u"I am a student", None))
+        self.dockWidget.setWindowTitle(QCoreApplication.translate("StackedWidget", u"Test editor", None))
+        self.addSingleButton.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("StackedWidget", u"Tab 1", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("StackedWidget", u"Tab 2", None))
         self.back_button_editor.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))
+        self.pushButton.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
         self.name_label.setText(QCoreApplication.translate("StackedWidget", u"Name:", None))
         self.connection_label.setText(QCoreApplication.translate("StackedWidget", u"Connection ID:", None))
         self.submit_button.setText(QCoreApplication.translate("StackedWidget", u"Submit", None))
