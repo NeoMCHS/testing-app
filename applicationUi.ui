@@ -29,7 +29,7 @@
    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.03, y1:0.063, x2:0.921182, y2:1, stop:0.0935961 rgba(24, 108, 128, 255), stop:1 rgba(255, 184, 127, 255));</string>
   </property>
   <property name="currentIndex">
-   <number>1</number>
+   <number>0</number>
   </property>
   <widget class="QWidget" name="page_1">
    <property name="sizePolicy">
@@ -87,7 +87,7 @@ background-color: rgb(70, 70, 70);
 color: white</string>
       </property>
       <property name="text">
-       <string>I am a teacher</string>
+       <string>Create/edit tests</string>
       </property>
      </widget>
     </item>
@@ -139,7 +139,7 @@ background-color: rgb(70, 70, 70);
 color: white</string>
       </property>
       <property name="text">
-       <string>I am a student</string>
+       <string>Take a test</string>
       </property>
      </widget>
     </item>
@@ -163,7 +163,8 @@ color: white</string>
     <item>
      <widget class="QDockWidget" name="dockWidget">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(48, 48, 48);</string>
+       <string notr="true">background-color: rgb(48, 48, 48);
+</string>
       </property>
       <property name="features">
        <set>QDockWidget::NoDockWidgetFeatures</set>
@@ -228,7 +229,7 @@ color: white</string>
              <x>0</x>
              <y>0</y>
              <width>498</width>
-             <height>468</height>
+             <height>480</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -240,58 +241,50 @@ color: white</string>
          </widget>
         </item>
         <item row="0" column="0" colspan="2">
-         <widget class="QWidget" name="widget_2" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>35</height>
-           </size>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QPushButton" name="back_button_editor">
-             <property name="maximumSize">
-              <size>
-               <width>70</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>11</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QPushButton" name="back_button_editor">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(70, 70, 70);</string>
-             </property>
-             <property name="text">
-              <string>&lt; Back</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string>PushButton</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+            </property>
+            <property name="text">
+             <string>&lt; Back</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>PushButton</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>

@@ -49,19 +49,19 @@ def create_choice_question():
     question = QWidget()
     #print(str(question_count)+" -> "+str(question_count + 1))
     question_count = question_count + 1
+    set_index()
     single_choice_question_ui.setupUi(question)
     question.setObjectName(f"question_{question_count}")
     question.winId
     single_choice_question_ui.validate_button.clicked.connect(back_to_start)
     main_ui.test_area.addWidget(question)
-    single_choice_question_ui.delete_button.clicked.connect(set_index)
     single_choice_question_ui.delete_button.clicked.connect(remove_question)
-    single_choice_question_ui.add_answer_button.clicked.connect(set_index)
     single_choice_question_ui.add_answer_button.clicked.connect(add_answer_choice)
-    single_choice_question_ui.remove_answer_button.clicked.connect(set_index)
     single_choice_question_ui.remove_answer_button.clicked.connect(remove_answer_choice)
     main_ui.addSingleButton.setEnabled(False)
     single_choice_question_ui.remove_answer_button.setEnabled(False)
+
+
 
 def remove_question():
     global index
@@ -78,6 +78,8 @@ def remove_question():
 def set_index():
     global index
     index = question_count-1
+
+# Choice question answer add/remove functions
 
 def remove_answer_choice():
     global index

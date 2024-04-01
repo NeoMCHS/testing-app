@@ -90,7 +90,8 @@ class Ui_StackedWidget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.dockWidget = QDockWidget(self.test_editor)
         self.dockWidget.setObjectName(u"dockWidget")
-        self.dockWidget.setStyleSheet(u"background-color: rgb(48, 48, 48);")
+        self.dockWidget.setStyleSheet(u"background-color: rgb(48, 48, 48);\n"
+"")
         self.dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -122,7 +123,7 @@ class Ui_StackedWidget(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 468))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 480))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.test_area = QVBoxLayout()
@@ -134,12 +135,9 @@ class Ui_StackedWidget(object):
 
         self.gridLayout_2.addWidget(self.scrollArea, 1, 1, 1, 1)
 
-        self.widget_2 = QWidget(self.dockWidgetContents)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(0, 35))
-        self.horizontalLayout_4 = QHBoxLayout(self.widget_2)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.back_button_editor = QPushButton(self.widget_2)
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.back_button_editor = QPushButton(self.dockWidgetContents)
         self.back_button_editor.setObjectName(u"back_button_editor")
         self.back_button_editor.setMaximumSize(QSize(70, 20))
         font = QFont()
@@ -148,19 +146,19 @@ class Ui_StackedWidget(object):
         self.back_button_editor.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(70, 70, 70);")
 
-        self.horizontalLayout_4.addWidget(self.back_button_editor)
+        self.horizontalLayout_5.addWidget(self.back_button_editor)
 
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout_4.addItem(self.horizontalSpacer_4)
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_4)
 
-        self.pushButton = QPushButton(self.widget_2)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton_2 = QPushButton(self.dockWidgetContents)
+        self.pushButton_2.setObjectName(u"pushButton_2")
 
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_5.addWidget(self.pushButton_2)
 
 
-        self.gridLayout_2.addWidget(self.widget_2, 0, 0, 1, 2)
+        self.gridLayout_2.addLayout(self.horizontalLayout_5, 0, 0, 1, 2)
 
         self.dockWidget.setWidget(self.dockWidgetContents)
 
@@ -224,7 +222,7 @@ class Ui_StackedWidget(object):
 
         self.retranslateUi(StackedWidget)
 
-        StackedWidget.setCurrentIndex(1)
+        StackedWidget.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
 
 
@@ -233,14 +231,14 @@ class Ui_StackedWidget(object):
 
     def retranslateUi(self, StackedWidget):
         StackedWidget.setWindowTitle(QCoreApplication.translate("StackedWidget", u"StackedWidget", None))
-        self.teacher_button.setText(QCoreApplication.translate("StackedWidget", u"I am a teacher", None))
-        self.student_button.setText(QCoreApplication.translate("StackedWidget", u"I am a student", None))
+        self.teacher_button.setText(QCoreApplication.translate("StackedWidget", u"Create/edit tests", None))
+        self.student_button.setText(QCoreApplication.translate("StackedWidget", u"Take a test", None))
         self.dockWidget.setWindowTitle(QCoreApplication.translate("StackedWidget", u"Test editor", None))
         self.addSingleButton.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("StackedWidget", u"Tab 1", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("StackedWidget", u"Tab 2", None))
         self.back_button_editor.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))
-        self.pushButton.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
+        self.pushButton_2.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
         self.name_label.setText(QCoreApplication.translate("StackedWidget", u"Name:", None))
         self.connection_label.setText(QCoreApplication.translate("StackedWidget", u"Connection ID:", None))
         self.submit_button.setText(QCoreApplication.translate("StackedWidget", u"Submit", None))
