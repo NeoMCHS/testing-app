@@ -4,10 +4,10 @@ import re
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QApplication, QMainWindow, QStackedWidget, QDialog, QDockWidget, QWidget, 
                                QVBoxLayout)
-import applicationUi
-import errorDialog
-import questionSingleChoice
-import choiceAnswer
+import UI.applicationUi as applicationUi
+import UI.errorDialog as errorDialog
+import UI.questionSingleChoice as questionSingleChoice
+import UI.choiceAnswer as choiceAnswer
 
 answer_choices_count = 1
 question_count = 0
@@ -27,9 +27,6 @@ def student_name_validation(name: str):
     if re.fullmatch('[A-Za-z]{2,25}', name) == None:
         return False
     return True
-
-def back_to_start():
-    main_window.setCurrentIndex(0)
 
 def validate_student_connection():
     name = main_ui.textEdit_name.toPlainText()
@@ -60,8 +57,6 @@ def create_choice_question():
     single_choice_question_ui.remove_answer_button.clicked.connect(remove_answer_choice)
     main_ui.addSingleButton.setEnabled(False)
     single_choice_question_ui.remove_answer_button.setEnabled(False)
-
-
 
 def remove_question():
     global index
@@ -114,6 +109,9 @@ def add_answer_choice():
 
 def student_registration_toggle():
     main_window.setCurrentIndex(2)
+
+def back_to_start():
+    main_window.setCurrentIndex(0)
 
 def launch_test_editor():
     #main_ui.dockWidget.setTitleBarWidget(QWidget(None))
