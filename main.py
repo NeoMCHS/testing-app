@@ -8,6 +8,7 @@ import UI.applicationUi as applicationUi
 import UI.errorDialog as errorDialog
 import UI.questionSingleChoice as questionSingleChoice
 import UI.choiceAnswer as choiceAnswer
+from PySide6.QtWidgets import QLabel, QPushButton, QFileDialog
 
 answer_choices_count = 1
 question_count = 0
