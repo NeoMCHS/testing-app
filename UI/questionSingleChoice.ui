@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>376</width>
+    <width>488</width>
     <height>280</height>
    </rect>
   </property>
@@ -53,6 +53,60 @@ border-color: rgb(192, 192, 192);</string>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QWidget" name="widget_3" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>160</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>0</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(97, 97, 97);</string>
+         </property>
+         <widget class="QComboBox" name="point_destribution">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>10</y>
+            <width>120</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>23</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(70, 70, 70);
+color: rgb(255, 255, 255);</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Split the points</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Give all points </string>
+           </property>
+          </item>
+         </widget>
+        </widget>
+       </item>
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
@@ -132,6 +186,10 @@ border-color: rgb(192, 192, 192);</string>
             <height>24</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(70, 70, 70);
+color: rgb(255, 255, 255);</string>
+          </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
@@ -153,7 +211,7 @@ border-color: rgb(192, 192, 192);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>348</width>
+          <width>445</width>
           <height>76</height>
          </rect>
         </property>
@@ -176,7 +234,7 @@ border-color: rgb(192, 192, 192);</string>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
-               <widget class="QCheckBox" name="checkBox">
+               <widget class="QCheckBox" name="is_right">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -189,7 +247,7 @@ border-color: rgb(192, 192, 192);</string>
                </widget>
               </item>
               <item>
-               <widget class="QPlainTextEdit" name="plainTextEdit">
+               <widget class="QPlainTextEdit" name="answer_choice_edit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -239,8 +297,7 @@ border-color: rgb(192, 192, 192);</string>
       <item>
        <widget class="QPushButton" name="delete_button">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 0, 0);
-background-color: rgb(196, 0, 18);</string>
+         <string notr="true">background-color: rgb(255, 0, 0);</string>
         </property>
         <property name="text">
          <string>Delete</string>

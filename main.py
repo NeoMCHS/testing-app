@@ -3,7 +3,7 @@ import sys
 import re
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QApplication, QMainWindow, QStackedWidget, QDialog, QDockWidget, QWidget, 
-                               QVBoxLayout)
+                               QVBoxLayout, QTextEdit, QCheckBox)
 import UI.applicationUi as applicationUi
 import UI.errorDialog as errorDialog
 import UI.questionSingleChoice as questionSingleChoice
@@ -13,7 +13,7 @@ answer_choices_count = 1
 question_count = 0
 index = 0
 questions = []
-answer_choice_ui = choiceAnswer.Ui_Form()
+answer_choice_ui = choiceAnswer.Ui_answer_choice()
 single_choice_question_ui = questionSingleChoice.Ui_Form()
 error_dialog_ui = errorDialog.Ui_dialog()
 main_ui = applicationUi.Ui_StackedWidget()
@@ -35,11 +35,49 @@ def validate_student_connection():
     if student_name_validation(name) == False:
         show_error_dialog("Invalid name", "Name must include only latin letters and be between 2 and 25 characters")
 
-def generate_json_choice_question():
+def generate_json_choice():
+    get_right_answers_choice()
     return 2
 
+#returns INDEXES of the checked answers
+def get_right_answers_choice():
+    correct_indexes = []
+    question = main_ui.test_area.itemAt(index).widget()
+    answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
+    for i in range(answer_area.count()):
+        marked_as_correct = answer_area.itemAt(i).widget().findChildren(QWidget, "is_right")[0].isChecked()
+        if marked_as_correct:
+            correct_indexes.append(i)
+    if correct_indexes == []:
+        return None
+    else:
+        return correct_indexes
+
+
+def check_blank_answers_choice():
+    question = main_ui.test_area.itemAt(index).widget()
+    answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
+    for i in range(answer_area.count()):
+        print(i)
+        answer_text = answer_area.itemAt(i).widget().findChildren(QWidget, "answer_choice_edit")[0].toPlainText()
+        if answer_text == "":
+            return False
+        if answer_text.isspace() == True:
+            return False
+    return True
+
 def validate_question():
-    return 1
+    try:
+        if check_blank_answers_choice() == False:
+            show_error_dialog("Remove blank answer", "All answers must be non-blank")
+            return False
+        if get_right_answers_choice() == None:
+            show_error_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
+            return False
+    except:
+        return False
+    
+        
 
 def create_choice_question():
     global question_count
@@ -50,7 +88,7 @@ def create_choice_question():
     single_choice_question_ui.setupUi(question)
     question.setObjectName(f"question_{question_count}")
     question.winId
-    single_choice_question_ui.validate_button.clicked.connect(back_to_start)
+    single_choice_question_ui.validate_button.clicked.connect(validate_question)
     main_ui.test_area.addWidget(question)
     single_choice_question_ui.delete_button.clicked.connect(remove_question)
     single_choice_question_ui.add_answer_button.clicked.connect(add_answer_choice)
@@ -101,6 +139,7 @@ def add_answer_choice():
         single_choice_question_ui.add_answer_button.setEnabled(False)
     answer_choice = QWidget()
     answer_choice_ui.setupUi(answer_choice)
+    answer_choice.setObjectName(f"answer_widget")
     item = main_ui.test_area.itemAt(index).widget()
     answer_area = item.findChildren(QVBoxLayout, "answers_area")[0]
     answer_area.addWidget(answer_choice)
@@ -124,7 +163,6 @@ def show_error_dialog(header: str, message: str):
     error_dialog_ui.header_label.setText(header)
     error_dialog_ui.description_label.setText(message)
     dialog_window.show()
-    print("ooga booga")
 
 main_ui.addSingleButton.clicked.connect(create_choice_question)
 main_ui.teacher_button.clicked.connect(launch_test_editor)

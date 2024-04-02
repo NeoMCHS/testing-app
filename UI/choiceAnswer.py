@@ -18,38 +18,38 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QCheckBox, QHBoxLayout, QSizePolicy,
     QTextEdit, QWidget)
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(400, 50)
-        Form.setMinimumSize(QSize(0, 50))
-        Form.setMaximumSize(QSize(16777215, 50))
-        Form.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+class Ui_answer_choice(object):
+    def setupUi(self, answer_choice):
+        if not answer_choice.objectName():
+            answer_choice.setObjectName(u"answer_choice")
+        answer_choice.resize(400, 50)
+        answer_choice.setMinimumSize(QSize(0, 50))
+        answer_choice.setMaximumSize(QSize(16777215, 50))
+        answer_choice.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
 "border-color: rgb(192, 192, 192);")
-        self.horizontalLayout = QHBoxLayout(Form)
+        self.horizontalLayout = QHBoxLayout(answer_choice)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.checkBox = QCheckBox(Form)
-        self.checkBox.setObjectName(u"checkBox")
+        self.is_right = QCheckBox(answer_choice)
+        self.is_right.setObjectName(u"is_right")
 
-        self.horizontalLayout.addWidget(self.checkBox)
+        self.horizontalLayout.addWidget(self.is_right)
 
-        self.textEdit = QTextEdit(Form)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setMinimumSize(QSize(0, 20))
-        self.textEdit.setMaximumSize(QSize(16777215, 30))
-        self.textEdit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.answer_choice_edit = QTextEdit(answer_choice)
+        self.answer_choice_edit.setObjectName(u"answer_choice_edit")
+        self.answer_choice_edit.setMinimumSize(QSize(0, 20))
+        self.answer_choice_edit.setMaximumSize(QSize(16777215, 30))
+        self.answer_choice_edit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
 
-        self.horizontalLayout.addWidget(self.textEdit)
+        self.horizontalLayout.addWidget(self.answer_choice_edit)
 
 
-        self.retranslateUi(Form)
+        self.retranslateUi(answer_choice)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(answer_choice)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.checkBox.setText("")
+    def retranslateUi(self, answer_choice):
+        answer_choice.setWindowTitle(QCoreApplication.translate("answer_choice", u"Form", None))
+        self.is_right.setText("")
     # retranslateUi
 
