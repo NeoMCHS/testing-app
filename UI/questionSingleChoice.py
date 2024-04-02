@@ -24,27 +24,27 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(528, 280)
+        Form.resize(500, 300)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
         Form.setSizePolicy(sizePolicy)
-        Form.setMinimumSize(QSize(0, 280))
-        Form.setMaximumSize(QSize(1500000, 1500000))
+        Form.setMinimumSize(QSize(500, 300))
+        Form.setMaximumSize(QSize(1500000, 650))
         Form.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
 "border-color: rgb(192, 192, 192);")
-        self.verticalLayout = QVBoxLayout(Form)
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.question_area = QVBoxLayout(Form)
+        self.question_area.setObjectName(u"question_area")
         self.main_area = QVBoxLayout()
         self.main_area.setObjectName(u"main_area")
-        self.textEdit = QTextEdit(Form)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setMaximumSize(QSize(16777215, 80))
-        self.textEdit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
-        self.textEdit.setLineWidth(0)
+        self.question_text_field = QTextEdit(Form)
+        self.question_text_field.setObjectName(u"question_text_field")
+        self.question_text_field.setMaximumSize(QSize(16777215, 80))
+        self.question_text_field.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.question_text_field.setLineWidth(0)
 
-        self.main_area.addWidget(self.textEdit)
+        self.main_area.addWidget(self.question_text_field)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -56,7 +56,7 @@ class Ui_Form(object):
         sizePolicy1.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
         self.widget_3.setSizePolicy(sizePolicy1)
         self.widget_3.setMinimumSize(QSize(270, 45))
-        self.widget_3.setMaximumSize(QSize(260, 45))
+        self.widget_3.setMaximumSize(QSize(270, 45))
         self.widget_3.setStyleSheet(u"background-color: rgb(97, 97, 97);")
         self.horizontalLayout = QHBoxLayout(self.widget_3)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -110,10 +110,11 @@ class Ui_Form(object):
 
         self.scrollArea = QScrollArea(Form)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setMaximumSize(QSize(16777215, 600))
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 485, 76))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 472, 79))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.answers_area = QVBoxLayout()
@@ -151,7 +152,7 @@ class Ui_Form(object):
         self.main_area.addWidget(self.scrollArea)
 
 
-        self.verticalLayout.addLayout(self.main_area)
+        self.question_area.addLayout(self.main_area)
 
         self.bottom_bar = QWidget(Form)
         self.bottom_bar.setObjectName(u"bottom_bar")
@@ -160,7 +161,8 @@ class Ui_Form(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.delete_button = QPushButton(self.bottom_bar)
         self.delete_button.setObjectName(u"delete_button")
-        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);")
+        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
+"color: rgb(0, 0, 0);")
 
         self.horizontalLayout_4.addWidget(self.delete_button)
 
@@ -178,12 +180,13 @@ class Ui_Form(object):
 
         self.validate_button = QPushButton(self.bottom_bar)
         self.validate_button.setObjectName(u"validate_button")
-        self.validate_button.setStyleSheet(u"background-color: rgb(86, 73, 255);")
+        self.validate_button.setStyleSheet(u"background-color: rgb(86, 73, 255);\n"
+"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_4.addWidget(self.validate_button)
 
 
-        self.verticalLayout.addWidget(self.bottom_bar)
+        self.question_area.addWidget(self.bottom_bar)
 
 
         self.retranslateUi(Form)

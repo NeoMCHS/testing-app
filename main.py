@@ -3,7 +3,7 @@ import sys
 import re
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QApplication, QMainWindow, QStackedWidget, QDialog, QDockWidget, QWidget, 
-                               QVBoxLayout, QTextEdit, QCheckBox, QPlainTextEdit)
+                               QVBoxLayout, QTextEdit, QCheckBox, QPlainTextEdit, QComboBox, QPushButton)
 import UI.applicationUi as applicationUi
 import UI.errorDialog as errorDialog
 import UI.questionSingleChoice as questionSingleChoice
@@ -49,6 +49,14 @@ def get_right_answers_choice():
     else:
         return correct_indexes
 
+def get_points_destribution_choice():
+    question = main_ui.test_area.itemAt(index).widget()
+    point_destribution_index = question.findChildren(QComboBox, "point_destribution")[0].currentIndex()
+    if point_destribution_index == 0:
+        return "split"
+    elif point_destribution_index == 1:
+        return "concentrate"
+
 def get_total_points_choice():
     question = main_ui.test_area.itemAt(index).widget()
     total_points = question.findChildren(QPlainTextEdit, "total_points")[0].toPlainText()
@@ -58,7 +66,6 @@ def get_total_points_choice():
             total_points = int(total_points)
             if total_points >= 0:
                 final = round(total_points, 1)
-                print(final)
                 return final
             else: 
                 return None
@@ -67,33 +74,63 @@ def get_total_points_choice():
     except:
         return None
 
+def check_blank_question_choice():
+    question = main_ui.test_area.itemAt(index).widget()
+    question_text = question.findChildren(QTextEdit, "question_text_field")[0].toPlainText()
+    if question_text == "":
+        return False
+    if question_text.isspace() == True:
+        return False
+    return True
 
-def check_blank_answers_choice():
+def check_answers_choice():
     question = main_ui.test_area.itemAt(index).widget()
     answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
+    if answer_area.count() == 1:
+        show_error_dialog("Only one answer choice present", "This question wouldn't be very challenging")
+        return False
     for i in range(answer_area.count()):
-        print(i)
         answer_text = answer_area.itemAt(i).widget().findChildren(QWidget, "answer_choice_edit")[0].toPlainText()
         if answer_text == "":
+            show_error_dialog("Remove blank answer", "All answers must be non-blank")
             return False
         if answer_text.isspace() == True:
+            show_error_dialog("Remove blank answer", "All answers must be non-blank")
             return False
     return True
 
 def validate_question():
-    try:
-        if check_blank_answers_choice() == False:
-            show_error_dialog("Remove blank answer", "All answers must be non-blank")
-            return False
-        if get_right_answers_choice() == None:
-            show_error_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
-            return False
-        if get_total_points_choice() == None:
-            show_error_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
-            return False
-    except:
+    if check_blank_question_choice() == False:
+        show_error_dialog("There is no question", "You should probably write the question before trying to submit it")
         return False
+    if check_answers_choice() == False:
+        return False
+    if get_right_answers_choice() == None:
+        show_error_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
+        return False
+    if get_total_points_choice() == None:
+        show_error_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
+        return False
+    toggle_question_finished()
     
+def toggle_question_finished():
+    question = main_ui.test_area.itemAt(index).widget()
+    button = QPushButton()
+    button.setObjectName("edit_button")
+    button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
+    button.setText("Edit")
+    place = question.findChildren(QVBoxLayout, "question_area")[0]
+    question.findChildren(QPushButton, "delete_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "remove_answer_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "add_answer_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "validate_button")[0].setEnabled(False)
+    place.addWidget(button)
+    #question.setMinimumWidth(question.geometry().width())
+    #question.setMaximumWidth(question.geometry().width())
+    question.setMinimumHeight(question.geometry().height())
+    question.setMaximumHeight(question.geometry().height())
+    main_ui.addSingleButton.setEnabled(True)
+
 def generate_json_choice():
     get_right_answers_choice()
     return 2
@@ -127,9 +164,15 @@ def remove_question():
     main_ui.addSingleButton.setEnabled(True)
     #main_ui.test_area.removeItem(item)
 
+def force_set_index(forced_index):
+    global index
+    index = forced_index
+    print(f"force setting index to {index}")
+
 def set_index():
     global index
     index = question_count-1
+    print(f"setting index to {index}")
 
 # Choice question answer add/remove functions
 
