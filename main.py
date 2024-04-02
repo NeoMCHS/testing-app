@@ -115,6 +115,8 @@ def validate_question():
     toggle_question_finished()
     
 def toggle_question_finished():
+    #TODO make sure that the drop down menu is getting locked. Make sure that add image is getting locked
+    #TODO create and connect a function to the edit button that will set the right index + make sure that no other questions are editable
     question = main_ui.test_area.itemAt(index).widget()
     button = QPushButton()
     button.setObjectName("edit_button")
@@ -140,7 +142,7 @@ def add_image():
     file_dialog = QFileDialog()
     file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
     file_dialog.setViewMode(QFileDialog.Detail)
-    if file_dialog.exec_():
+    if file_dialog.exec():
         file_path = file_dialog.selectedFiles()[0]
 
 def create_choice_question():
@@ -158,6 +160,7 @@ def create_choice_question():
     single_choice_question_ui.remove_answer_button.clicked.connect(remove_answer_choice)
     main_ui.addSingleButton.setEnabled(False)
     single_choice_question_ui.remove_answer_button.setEnabled(False)
+    #TODO maybe add the add_image button to the question_area for estetics reasons (maybe)
     add_image_button = QPushButton("Add an image")
     add_image_button.clicked.connect(add_image)
     main_ui.test_area.addWidget(add_image_button)
