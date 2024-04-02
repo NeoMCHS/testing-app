@@ -165,7 +165,7 @@ color: rgb(255, 255, 255);</string>
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
          </widget>
-         <widget class="QPlainTextEdit" name="plainTextEdit_2">
+         <widget class="QPlainTextEdit" name="total_points">
           <property name="geometry">
            <rect>
             <x>138</x>

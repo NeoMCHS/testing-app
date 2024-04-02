@@ -81,15 +81,15 @@ class Ui_Form(object):
         self.label.setMinimumSize(QSize(120, 24))
         self.label.setMaximumSize(QSize(120, 16777215))
         self.label.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.plainTextEdit_2 = QPlainTextEdit(self.widget_2)
-        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
-        self.plainTextEdit_2.setGeometry(QRect(138, 12, 50, 24))
-        self.plainTextEdit_2.setMinimumSize(QSize(50, 24))
-        self.plainTextEdit_2.setMaximumSize(QSize(50, 24))
-        self.plainTextEdit_2.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+        self.total_points = QPlainTextEdit(self.widget_2)
+        self.total_points.setObjectName(u"total_points")
+        self.total_points.setGeometry(QRect(138, 12, 50, 24))
+        self.total_points.setMinimumSize(QSize(50, 24))
+        self.total_points.setMaximumSize(QSize(50, 24))
+        self.total_points.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
 "color: rgb(255, 255, 255);")
-        self.plainTextEdit_2.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.plainTextEdit_2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.total_points.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.total_points.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.horizontalLayout_2.addWidget(self.widget_2)
 

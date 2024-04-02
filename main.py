@@ -3,7 +3,7 @@ import sys
 import re
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QApplication, QMainWindow, QStackedWidget, QDialog, QDockWidget, QWidget, 
-                               QVBoxLayout, QTextEdit, QCheckBox)
+                               QVBoxLayout, QTextEdit, QCheckBox, QPlainTextEdit)
 import UI.applicationUi as applicationUi
 import UI.errorDialog as errorDialog
 import UI.questionSingleChoice as questionSingleChoice
@@ -35,10 +35,6 @@ def validate_student_connection():
     if student_name_validation(name) == False:
         show_error_dialog("Invalid name", "Name must include only latin letters and be between 2 and 25 characters")
 
-def generate_json_choice():
-    get_right_answers_choice()
-    return 2
-
 #returns INDEXES of the checked answers
 def get_right_answers_choice():
     correct_indexes = []
@@ -52,6 +48,24 @@ def get_right_answers_choice():
         return None
     else:
         return correct_indexes
+
+def get_total_points_choice():
+    question = main_ui.test_area.itemAt(index).widget()
+    total_points = question.findChildren(QPlainTextEdit, "total_points")[0].toPlainText()
+    try:
+        total_points = float(total_points)
+        if total_points.is_integer() == True:
+            total_points = int(total_points)
+            if total_points >= 0:
+                final = round(total_points, 1)
+                print(final)
+                return final
+            else: 
+                return None
+        else:
+            return None
+    except:
+        return None
 
 
 def check_blank_answers_choice():
@@ -74,10 +88,15 @@ def validate_question():
         if get_right_answers_choice() == None:
             show_error_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
             return False
+        if get_total_points_choice() == None:
+            show_error_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
+            return False
     except:
         return False
     
-        
+def generate_json_choice():
+    get_right_answers_choice()
+    return 2
 
 def create_choice_question():
     global question_count
