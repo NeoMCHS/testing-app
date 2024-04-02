@@ -29,7 +29,7 @@
    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.03, y1:0.063, x2:0.921182, y2:1, stop:0.0935961 rgba(24, 108, 128, 255), stop:1 rgba(255, 184, 127, 255));</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="page_1">
    <property name="sizePolicy">
@@ -178,7 +178,7 @@ color: white</string>
          <widget class="QTabWidget" name="tabWidget">
           <property name="minimumSize">
            <size>
-            <width>200</width>
+            <width>180</width>
             <height>0</height>
            </size>
           </property>
@@ -216,7 +216,7 @@ color: white</string>
          <widget class="QScrollArea" name="scrollArea">
           <property name="minimumSize">
            <size>
-            <width>500</width>
+            <width>550</width>
             <height>0</height>
            </size>
           </property>
@@ -228,7 +228,7 @@ color: white</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>498</width>
+             <width>548</width>
              <height>480</height>
             </rect>
            </property>

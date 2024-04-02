@@ -99,7 +99,7 @@ class Ui_StackedWidget(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.tabWidget = QTabWidget(self.dockWidgetContents)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setMinimumSize(QSize(200, 0))
+        self.tabWidget.setMinimumSize(QSize(180, 0))
         self.tabWidget.setMaximumSize(QSize(300, 16777215))
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
@@ -119,11 +119,11 @@ class Ui_StackedWidget(object):
 
         self.scrollArea = QScrollArea(self.dockWidgetContents)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setMinimumSize(QSize(500, 0))
+        self.scrollArea.setMinimumSize(QSize(550, 0))
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 480))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 548, 480))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.test_area = QVBoxLayout()
@@ -222,7 +222,7 @@ class Ui_StackedWidget(object):
 
         self.retranslateUi(StackedWidget)
 
-        StackedWidget.setCurrentIndex(0)
+        StackedWidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
 
 

@@ -15,15 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QHBoxLayout, QLabel,
-    QPlainTextEdit, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QHBoxLayout,
+    QLabel, QPlainTextEdit, QPushButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QTextEdit, QVBoxLayout,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(376, 280)
+        Form.resize(528, 280)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -41,12 +42,42 @@ class Ui_Form(object):
         self.textEdit.setObjectName(u"textEdit")
         self.textEdit.setMaximumSize(QSize(16777215, 80))
         self.textEdit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.textEdit.setLineWidth(0)
 
         self.main_area.addWidget(self.textEdit)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.widget_3 = QWidget(Form)
+        self.widget_3.setObjectName(u"widget_3")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
+        self.widget_3.setSizePolicy(sizePolicy1)
+        self.widget_3.setMinimumSize(QSize(270, 45))
+        self.widget_3.setMaximumSize(QSize(260, 45))
+        self.widget_3.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.horizontalLayout = QHBoxLayout(self.widget_3)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.point_destribution = QComboBox(self.widget_3)
+        self.point_destribution.addItem("")
+        self.point_destribution.addItem("")
+        self.point_destribution.setObjectName(u"point_destribution")
+        self.point_destribution.setMaximumSize(QSize(16777215, 23))
+        font = QFont()
+        font.setPointSize(9)
+        self.point_destribution.setFont(font)
+        self.point_destribution.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"color: rgb(255, 255, 255);")
+        self.point_destribution.setFrame(False)
+
+        self.horizontalLayout.addWidget(self.point_destribution)
+
+
+        self.horizontalLayout_2.addWidget(self.widget_3)
+
+        self.horizontalSpacer = QSpacerItem(10, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -61,13 +92,16 @@ class Ui_Form(object):
         self.label.setMinimumSize(QSize(120, 24))
         self.label.setMaximumSize(QSize(120, 16777215))
         self.label.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.plainTextEdit_2 = QPlainTextEdit(self.widget_2)
-        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
-        self.plainTextEdit_2.setGeometry(QRect(138, 12, 50, 24))
-        self.plainTextEdit_2.setMinimumSize(QSize(50, 24))
-        self.plainTextEdit_2.setMaximumSize(QSize(50, 24))
-        self.plainTextEdit_2.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.plainTextEdit_2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.total_points = QPlainTextEdit(self.widget_2)
+        self.total_points.setObjectName(u"total_points")
+        self.total_points.setGeometry(QRect(138, 12, 50, 24))
+        self.total_points.setMinimumSize(QSize(50, 24))
+        self.total_points.setMaximumSize(QSize(50, 24))
+        self.total_points.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"color: rgb(255, 255, 255);")
+        self.total_points.setLineWidth(0)
+        self.total_points.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.total_points.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.horizontalLayout_2.addWidget(self.widget_2)
 
@@ -79,7 +113,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 348, 76))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 485, 76))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.answers_area = QVBoxLayout()
@@ -90,21 +124,21 @@ class Ui_Form(object):
         self.answer_choice.setMaximumSize(QSize(16777215, 50))
         self.horizontalLayout_3 = QHBoxLayout(self.answer_choice)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.checkBox = QCheckBox(self.answer_choice)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setMinimumSize(QSize(0, 20))
+        self.is_right = QCheckBox(self.answer_choice)
+        self.is_right.setObjectName(u"is_right")
+        self.is_right.setMinimumSize(QSize(0, 20))
 
-        self.horizontalLayout_3.addWidget(self.checkBox)
+        self.horizontalLayout_3.addWidget(self.is_right)
 
-        self.plainTextEdit = QPlainTextEdit(self.answer_choice)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        self.plainTextEdit.setMinimumSize(QSize(0, 20))
-        self.plainTextEdit.setMaximumSize(QSize(15000000, 30))
-        self.plainTextEdit.setSizeIncrement(QSize(0, 0))
-        self.plainTextEdit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
-        self.plainTextEdit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.answer_choice_edit = QPlainTextEdit(self.answer_choice)
+        self.answer_choice_edit.setObjectName(u"answer_choice_edit")
+        self.answer_choice_edit.setMinimumSize(QSize(0, 20))
+        self.answer_choice_edit.setMaximumSize(QSize(15000000, 30))
+        self.answer_choice_edit.setSizeIncrement(QSize(0, 0))
+        self.answer_choice_edit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.answer_choice_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        self.horizontalLayout_3.addWidget(self.plainTextEdit)
+        self.horizontalLayout_3.addWidget(self.answer_choice_edit)
 
 
         self.answers_area.addWidget(self.answer_choice)
@@ -126,8 +160,7 @@ class Ui_Form(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.delete_button = QPushButton(self.bottom_bar)
         self.delete_button.setObjectName(u"delete_button")
-        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
-"background-color: rgb(196, 0, 18);")
+        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);")
 
         self.horizontalLayout_4.addWidget(self.delete_button)
 
@@ -160,8 +193,11 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        self.point_destribution.setItemText(0, QCoreApplication.translate("Form", u"Split total points between all correct answers", None))
+        self.point_destribution.setItemText(1, QCoreApplication.translate("Form", u"Give all points for a single correct answer", None))
+
         self.label.setText(QCoreApplication.translate("Form", u"Points for question:", None))
-        self.checkBox.setText("")
+        self.is_right.setText("")
         self.delete_button.setText(QCoreApplication.translate("Form", u"Delete", None))
         self.remove_answer_button.setText(QCoreApplication.translate("Form", u"Remove answer", None))
         self.add_answer_button.setText(QCoreApplication.translate("Form", u"Add answer", None))
