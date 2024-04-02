@@ -24,7 +24,7 @@ main_window = QStackedWidget()
 main_ui.setupUi(main_window)
 
 def student_name_validation(name: str):
-    if re.fullmatch('[A-Za-z]{2,25}', name) == None:
+    if re.fullmatch('[A-Za-z ]{2,25}', name) == None:
         return False
     return True
 
