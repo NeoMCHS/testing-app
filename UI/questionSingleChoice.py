@@ -79,7 +79,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 333, 76))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 348, 76))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.answers_area = QVBoxLayout()
@@ -126,7 +126,8 @@ class Ui_Form(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.delete_button = QPushButton(self.bottom_bar)
         self.delete_button.setObjectName(u"delete_button")
-        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);")
+        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
+"background-color: rgb(196, 0, 18);")
 
         self.horizontalLayout_4.addWidget(self.delete_button)
 

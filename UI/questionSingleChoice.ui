@@ -153,7 +153,7 @@ border-color: rgb(192, 192, 192);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>333</width>
+          <width>348</width>
           <height>76</height>
          </rect>
         </property>
@@ -239,7 +239,8 @@ border-color: rgb(192, 192, 192);</string>
       <item>
        <widget class="QPushButton" name="delete_button">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 0, 0);</string>
+         <string notr="true">background-color: rgb(255, 0, 0);
+background-color: rgb(196, 0, 18);</string>
         </property>
         <property name="text">
          <string>Delete</string>
