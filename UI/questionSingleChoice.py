@@ -24,7 +24,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(488, 280)
+        Form.resize(528, 280)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -42,6 +42,7 @@ class Ui_Form(object):
         self.textEdit.setObjectName(u"textEdit")
         self.textEdit.setMaximumSize(QSize(16777215, 80))
         self.textEdit.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.textEdit.setLineWidth(0)
 
         self.main_area.addWidget(self.textEdit)
 
@@ -49,24 +50,34 @@ class Ui_Form(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.widget_3 = QWidget(Form)
         self.widget_3.setObjectName(u"widget_3")
-        self.widget_3.setMinimumSize(QSize(160, 45))
-        self.widget_3.setMaximumSize(QSize(0, 45))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
+        self.widget_3.setSizePolicy(sizePolicy1)
+        self.widget_3.setMinimumSize(QSize(270, 45))
+        self.widget_3.setMaximumSize(QSize(260, 45))
         self.widget_3.setStyleSheet(u"background-color: rgb(97, 97, 97);")
+        self.horizontalLayout = QHBoxLayout(self.widget_3)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.point_destribution = QComboBox(self.widget_3)
         self.point_destribution.addItem("")
         self.point_destribution.addItem("")
         self.point_destribution.setObjectName(u"point_destribution")
-        self.point_destribution.setGeometry(QRect(20, 10, 120, 23))
         self.point_destribution.setMaximumSize(QSize(16777215, 23))
         font = QFont()
         font.setPointSize(9)
         self.point_destribution.setFont(font)
         self.point_destribution.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
 "color: rgb(255, 255, 255);")
+        self.point_destribution.setFrame(False)
+
+        self.horizontalLayout.addWidget(self.point_destribution)
+
 
         self.horizontalLayout_2.addWidget(self.widget_3)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer = QSpacerItem(10, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -88,6 +99,7 @@ class Ui_Form(object):
         self.total_points.setMaximumSize(QSize(50, 24))
         self.total_points.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
 "color: rgb(255, 255, 255);")
+        self.total_points.setLineWidth(0)
         self.total_points.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.total_points.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
@@ -101,7 +113,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 445, 76))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 485, 76))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.answers_area = QVBoxLayout()
@@ -181,8 +193,8 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.point_destribution.setItemText(0, QCoreApplication.translate("Form", u"Split the points", None))
-        self.point_destribution.setItemText(1, QCoreApplication.translate("Form", u"Give all points ", None))
+        self.point_destribution.setItemText(0, QCoreApplication.translate("Form", u"Split total points between all correct answers", None))
+        self.point_destribution.setItemText(1, QCoreApplication.translate("Form", u"Give all points for a single correct answer", None))
 
         self.label.setText(QCoreApplication.translate("Form", u"Points for question:", None))
         self.is_right.setText("")

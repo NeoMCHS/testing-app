@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>488</width>
+    <width>528</width>
     <height>280</height>
    </rect>
   </property>
@@ -49,62 +49,70 @@ border-color: rgb(192, 192, 192);</string>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(97, 97, 97);</string>
        </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
       </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QWidget" name="widget_3" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
-           <width>160</width>
+           <width>270</width>
            <height>45</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>0</width>
+           <width>260</width>
            <height>45</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(97, 97, 97);</string>
          </property>
-         <widget class="QComboBox" name="point_destribution">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>10</y>
-            <width>120</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>23</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(70, 70, 70);
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QComboBox" name="point_destribution">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>23</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(70, 70, 70);
 color: rgb(255, 255, 255);</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Split the points</string>
-           </property>
+            </property>
+            <property name="frame">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Split total points between all correct answers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Give all points for a single correct answer</string>
+             </property>
+            </item>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>Give all points </string>
-           </property>
-          </item>
-         </widget>
+         </layout>
         </widget>
        </item>
        <item>
@@ -114,7 +122,7 @@ color: rgb(255, 255, 255);</string>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -190,6 +198,9 @@ color: rgb(255, 255, 255);</string>
            <string notr="true">background-color: rgb(70, 70, 70);
 color: rgb(255, 255, 255);</string>
           </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
@@ -211,7 +222,7 @@ color: rgb(255, 255, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>445</width>
+          <width>485</width>
           <height>76</height>
          </rect>
         </property>
