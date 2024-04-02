@@ -4,6 +4,7 @@ import re
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QApplication, QMainWindow, QStackedWidget, QDialog, QDockWidget, QWidget, 
                                QVBoxLayout)
+from PySide6.QtWidgets import QLabel, QPushButton, QFileDialog
 import UI.applicationUi as applicationUi
 import UI.errorDialog as errorDialog
 import UI.questionSingleChoice as questionSingleChoice
@@ -41,10 +42,16 @@ def generate_json_choice_question():
 def validate_question():
     return 1
 
+def add_image():
+    file_dialog = QFileDialog()
+    file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
+    file_dialog.setViewMode(QFileDialog.Detail)
+    if file_dialog.exec_():
+        file_path = file_dialog.selectedFiles()[0]
+
 def create_choice_question():
     global question_count
     question = QWidget()
-    #print(str(question_count)+" -> "+str(question_count + 1))
     question_count = question_count + 1
     set_index()
     single_choice_question_ui.setupUi(question)
@@ -57,6 +64,9 @@ def create_choice_question():
     single_choice_question_ui.remove_answer_button.clicked.connect(remove_answer_choice)
     main_ui.addSingleButton.setEnabled(False)
     single_choice_question_ui.remove_answer_button.setEnabled(False)
+    add_image_button = QPushButton("Add an image")
+    add_image_button.clicked.connect(add_image)
+    main_ui.test_area.addWidget(add_image_button)
 
 def remove_question():
     global index
