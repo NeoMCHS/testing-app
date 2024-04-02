@@ -42,7 +42,7 @@ def generate_json_choice_question():
     return 2
 
 def validate_question():
-    return 0
+    return 1
 
 def create_choice_question():
     global question_count
