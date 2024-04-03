@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>300</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>500</width>
-    <height>300</height>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -229,7 +229,7 @@ color: rgb(255, 255, 255);</string>
           <x>0</x>
           <y>0</y>
           <width>472</width>
-          <height>79</height>
+          <height>279</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">

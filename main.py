@@ -10,7 +10,6 @@ import UI.questionSingleChoice as questionSingleChoice
 import UI.choiceAnswer as choiceAnswer
 from PySide6.QtWidgets import QLabel, QPushButton, QFileDialog
 
-answer_choices_count = 1
 question_count = 0
 index = 0
 questions = []
@@ -32,7 +31,6 @@ def student_name_validation(name: str):
 def validate_student_connection():
     name = main_ui.textEdit_name.toPlainText()
     connection_details = main_ui.textEdit_conn.toPlainText()
-    print(student_name_validation(name))
     if student_name_validation(name) == False:
         show_error_dialog("Invalid name", "Name must include only latin letters and be between 2 and 25 characters")
 
@@ -85,6 +83,7 @@ def check_blank_question_choice():
     return True
 
 def check_answers_choice():
+    global index
     question = main_ui.test_area.itemAt(index).widget()
     answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
     if answer_area.count() == 1:
@@ -100,22 +99,77 @@ def check_answers_choice():
             return False
     return True
 
+def add_edit_buttons_to_others(exception):
+    for i in range(main_ui.test_area.count()):
+        if i == exception:
+            pass
+        else:
+            question = main_ui.test_area.itemAt(i).widget()
+            if bool(question.findChildren(QPushButton, "edit_button")) == False:
+                create_edit_button_target(i)
+                disable_question_editing_target(i)
+
+
+def create_edit_button_target(target):
+    question = main_ui.test_area.itemAt(target).widget()
+    edit_button = QPushButton()
+    edit_button.setObjectName("edit_button")
+    edit_button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
+    edit_button.setText("Edit")
+    place = question.findChildren(QVBoxLayout, "question_area")[0]
+    place.addWidget(edit_button)
+    edit_button.clicked.connect(lambda: force_set_index(target))
+    edit_button.clicked.connect(lambda: remove_edit_button())
+    edit_button.clicked.connect(lambda: enable_question_editing())
+    edit_button.clicked.connect(lambda: add_edit_buttons_to_others(target))
+
 def create_edit_button():
+    global index
     question = main_ui.test_area.itemAt(index).widget()
     edit_button = QPushButton()
     edit_button.setObjectName("edit_button")
     edit_button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
     edit_button.setText("Edit")
-    current_index = index
-    edit_button.clicked.connect(lambda: force_set_index(current_index))
-    edit_button.clicked.connect(lambda: editing_enabled(current_index))
     place = question.findChildren(QVBoxLayout, "question_area")[0]
     place.addWidget(edit_button)
+    current_index = index
+    edit_button.clicked.connect(lambda: force_set_index(current_index))
+    edit_button.clicked.connect(lambda: remove_edit_button())
+    edit_button.clicked.connect(lambda: enable_question_editing())
+    edit_button.clicked.connect(lambda: add_edit_buttons_to_others(current_index))
 
 def remove_edit_button():
     question = main_ui.test_area.itemAt(index).widget()
     edit_button = question.findChildren(QPushButton, "edit_button")[0]
     edit_button.deleteLater()
+
+def remove_edit_button_target(target):
+    question = main_ui.test_area.itemAt(target).widget()
+    edit_button = question.findChildren(QPushButton, "edit_button")[0]
+    edit_button.deleteLater()
+
+def update_edit_buttons_on_delete():
+    print(question_count)
+    for i in range(question_count):
+        remove_edit_button_target(i)
+        create_edit_button_target(i)
+
+def disable_question_editing_target(target):
+    question = main_ui.test_area.itemAt(target).widget()
+    place = question.findChildren(QVBoxLayout, "question_area")[0]
+    question.findChildren(QPushButton, "delete_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "remove_answer_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "add_answer_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "validate_button")[0].setEnabled(False)
+    question.findChildren(QComboBox, "point_destribution")[0].setEnabled(False)
+    question.findChildren(QPushButton, "add_image_button")[0].setEnabled(False)
+    question.findChildren(QTextEdit, "question_text_field")[0].setEnabled(False)
+    question.findChildren(QPlainTextEdit, "total_points")[0].setEnabled(False)
+    answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
+    for i in range(answer_area.count()):
+        answer_area.itemAt(i).widget().setEnabled(False)
+    question.setMinimumHeight(question.geometry().height())
+    question.setMaximumHeight(question.geometry().height())
 
 def disable_question_editing():
     question = main_ui.test_area.itemAt(index).widget()
@@ -135,6 +189,7 @@ def disable_question_editing():
     question.setMaximumHeight(question.geometry().height())
 
 def enable_question_editing():
+    print(f"enabling editing for {index}")
     question = main_ui.test_area.itemAt(index).widget()
     place = question.findChildren(QVBoxLayout, "question_area")[0]
     question.findChildren(QPushButton, "delete_button")[0].setEnabled(True)
@@ -150,19 +205,6 @@ def enable_question_editing():
         answer_area.itemAt(i).widget().setEnabled(True)
     question.setMinimumHeight(question.geometry().height())
     question.setMaximumHeight(1500000)
-
-def editing_enabled(edited_index):
-    questions = main_ui.test_area
-    for i in range(questions.count()):
-        if i == edited_index:
-            pass
-        else:
-            force_set_index(i)
-            disable_question_editing()
-            create_edit_button()
-    force_set_index(edited_index)
-    enable_question_editing()
-    remove_edit_button()
 
 def validate_question():
     if check_blank_question_choice() == False:
@@ -202,7 +244,7 @@ def create_choice_question():
     question_count = question_count + 1
     set_index()
     single_choice_question_ui.setupUi(question)
-    question.setObjectName(f"question_{question_count}")
+    question.setObjectName(f"choice_question")
     question.winId
     single_choice_question_ui.validate_button.clicked.connect(validate_question)
     main_ui.test_area.addWidget(question)
@@ -221,13 +263,12 @@ def create_choice_question():
 def remove_question():
     global index
     global question_count
-    global answer_choices_count
     #print(str(question_count)+" -> "+str(question_count - 1))
     question_count = question_count - 1
     item = main_ui.test_area.itemAt(index).widget()
-    item.deleteLater()
-    answer_choices_count = 1
+    item.setParent(None)
     main_ui.addSingleButton.setEnabled(True)
+    update_edit_buttons_on_delete()
     #main_ui.test_area.removeItem(item)
 
 def force_set_index(forced_index):
@@ -244,33 +285,27 @@ def set_index():
 
 def remove_answer_choice():
     global index
-    global answer_choices_count
-    #print(str(answer_choices_count)+" -> "+str(answer_choices_count - 1))
-    answer_choices_count = answer_choices_count - 1
-    if answer_choices_count == 1:
-        single_choice_question_ui.remove_answer_button.setEnabled(False)
-        single_choice_question_ui.add_answer_button.setEnabled(True)
     item = main_ui.test_area.itemAt(index).widget()
     answer_area = item.findChildren(QVBoxLayout, "answers_area")[0]
     target_index = answer_area.count()-1
     target_answer = answer_area.itemAt(target_index).widget()
-    target_answer.deleteLater()    
+    target_answer.setParent(None)
+    if answer_area.count() == 1:
+        single_choice_question_ui.remove_answer_button.setEnabled(False)
+        single_choice_question_ui.add_answer_button.setEnabled(True)
 
 def add_answer_choice():
     global index
-    global answer_choices_count
-    #print(str(answer_choices_count)+" -> "+str(answer_choices_count + 1))
-    answer_choices_count = answer_choices_count + 1
-    if answer_choices_count > 1:
-        single_choice_question_ui.remove_answer_button.setEnabled(True)
-    if answer_choices_count > 5:
-        single_choice_question_ui.add_answer_button.setEnabled(False)
+    item = main_ui.test_area.itemAt(index).widget()
+    answer_area = item.findChildren(QVBoxLayout, "answers_area")[0]
     answer_choice = QWidget()
     answer_choice_ui.setupUi(answer_choice)
     answer_choice.setObjectName(f"answer_widget")
-    item = main_ui.test_area.itemAt(index).widget()
-    answer_area = item.findChildren(QVBoxLayout, "answers_area")[0]
     answer_area.addWidget(answer_choice)
+    if answer_area.count() > 1:
+        single_choice_question_ui.remove_answer_button.setEnabled(True)
+    if answer_area.count() > 5:
+        single_choice_question_ui.add_answer_button.setEnabled(False)
 
 #From here on out lay commands that change windows and stuff
 
@@ -282,7 +317,7 @@ def back_to_start():
 
 def launch_test_editor():
     #main_ui.dockWidget.setTitleBarWidget(QWidget(None))
-    title_bar = main_ui.dockWidget.titleBarWidget()
+    #title_bar = main_ui.dockWidget.titleBarWidget()
     main_window.setCurrentIndex(1)
 
 def show_error_dialog(header: str, message: str):

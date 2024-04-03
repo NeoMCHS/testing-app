@@ -24,13 +24,13 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(500, 300)
+        Form.resize(500, 500)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
         Form.setSizePolicy(sizePolicy)
-        Form.setMinimumSize(QSize(500, 300))
+        Form.setMinimumSize(QSize(500, 500))
         Form.setMaximumSize(QSize(1500000, 650))
         Form.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
 "border-color: rgb(192, 192, 192);")
@@ -114,7 +114,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 472, 79))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 472, 279))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.answers_area = QVBoxLayout()
