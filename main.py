@@ -100,6 +100,70 @@ def check_answers_choice():
             return False
     return True
 
+def create_edit_button():
+    question = main_ui.test_area.itemAt(index).widget()
+    edit_button = QPushButton()
+    edit_button.setObjectName("edit_button")
+    edit_button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
+    edit_button.setText("Edit")
+    current_index = index
+    edit_button.clicked.connect(lambda: force_set_index(current_index))
+    edit_button.clicked.connect(lambda: editing_enabled(current_index))
+    place = question.findChildren(QVBoxLayout, "question_area")[0]
+    place.addWidget(edit_button)
+
+def remove_edit_button():
+    question = main_ui.test_area.itemAt(index).widget()
+    edit_button = question.findChildren(QPushButton, "edit_button")[0]
+    edit_button.deleteLater()
+
+def disable_question_editing():
+    question = main_ui.test_area.itemAt(index).widget()
+    place = question.findChildren(QVBoxLayout, "question_area")[0]
+    question.findChildren(QPushButton, "delete_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "remove_answer_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "add_answer_button")[0].setEnabled(False)
+    question.findChildren(QPushButton, "validate_button")[0].setEnabled(False)
+    question.findChildren(QComboBox, "point_destribution")[0].setEnabled(False)
+    question.findChildren(QPushButton, "add_image_button")[0].setEnabled(False)
+    question.findChildren(QTextEdit, "question_text_field")[0].setEnabled(False)
+    question.findChildren(QPlainTextEdit, "total_points")[0].setEnabled(False)
+    answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
+    for i in range(answer_area.count()):
+        answer_area.itemAt(i).widget().setEnabled(False)
+    question.setMinimumHeight(question.geometry().height())
+    question.setMaximumHeight(question.geometry().height())
+
+def enable_question_editing():
+    question = main_ui.test_area.itemAt(index).widget()
+    place = question.findChildren(QVBoxLayout, "question_area")[0]
+    question.findChildren(QPushButton, "delete_button")[0].setEnabled(True)
+    question.findChildren(QPushButton, "remove_answer_button")[0].setEnabled(True)
+    question.findChildren(QPushButton, "add_answer_button")[0].setEnabled(True)
+    question.findChildren(QPushButton, "validate_button")[0].setEnabled(True)
+    question.findChildren(QComboBox, "point_destribution")[0].setEnabled(True)
+    question.findChildren(QPushButton, "add_image_button")[0].setEnabled(True)
+    question.findChildren(QTextEdit, "question_text_field")[0].setEnabled(True)
+    question.findChildren(QPlainTextEdit, "total_points")[0].setEnabled(True)
+    answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
+    for i in range(answer_area.count()):
+        answer_area.itemAt(i).widget().setEnabled(True)
+    question.setMinimumHeight(question.geometry().height())
+    question.setMaximumHeight(1500000)
+
+def editing_enabled(edited_index):
+    questions = main_ui.test_area
+    for i in range(questions.count()):
+        if i == edited_index:
+            pass
+        else:
+            force_set_index(i)
+            disable_question_editing()
+            create_edit_button()
+    force_set_index(edited_index)
+    enable_question_editing()
+    remove_edit_button()
+
 def validate_question():
     if check_blank_question_choice() == False:
         show_error_dialog("There is no question", "You should probably write the question before trying to submit it")
@@ -117,21 +181,8 @@ def validate_question():
 def toggle_question_finished():
     #TODO make sure that the drop down menu is getting locked. Make sure that add image is getting locked
     #TODO create and connect a function to the edit button that will set the right index + make sure that no other questions are editable
-    question = main_ui.test_area.itemAt(index).widget()
-    button = QPushButton()
-    button.setObjectName("edit_button")
-    button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
-    button.setText("Edit")
-    place = question.findChildren(QVBoxLayout, "question_area")[0]
-    question.findChildren(QPushButton, "delete_button")[0].setEnabled(False)
-    question.findChildren(QPushButton, "remove_answer_button")[0].setEnabled(False)
-    question.findChildren(QPushButton, "add_answer_button")[0].setEnabled(False)
-    question.findChildren(QPushButton, "validate_button")[0].setEnabled(False)
-    place.addWidget(button)
-    #question.setMinimumWidth(question.geometry().width())
-    #question.setMaximumWidth(question.geometry().width())
-    question.setMinimumHeight(question.geometry().height())
-    question.setMaximumHeight(question.geometry().height())
+    create_edit_button()
+    disable_question_editing()
     main_ui.addSingleButton.setEnabled(True)
 
 def generate_json_choice():
@@ -163,7 +214,9 @@ def create_choice_question():
     #TODO maybe add the add_image button to the question_area for estetics reasons (maybe)
     add_image_button = QPushButton("Add an image")
     add_image_button.clicked.connect(add_image)
-    main_ui.test_area.addWidget(add_image_button)
+    add_image_button.setObjectName("add_image_button")
+    question = main_ui.test_area.itemAt(index).widget()
+    question.findChildren(QVBoxLayout, "question_area")[0].addWidget(add_image_button)
 
 def remove_question():
     global index
