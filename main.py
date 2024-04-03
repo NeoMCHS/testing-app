@@ -232,6 +232,9 @@ def generate_json_choice():
     return 2
 
 def add_image():
+    #TODO convert the image into a datastring that can be displayed using HTML. You can use base64 module to do that
+    #Also you need to make sure that only ONE image is added to any question. As for the UI component you need to 
+    #make the button change if an image is successfuly added. Think of a way to display the added image. 
     file_dialog = QFileDialog()
     file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
     file_dialog.setViewMode(QFileDialog.Detail)
