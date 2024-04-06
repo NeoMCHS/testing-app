@@ -110,6 +110,11 @@ class Ui_StackedWidget(object):
 
         self.gridLayout_3.addWidget(self.addSingleButton, 0, 0, 1, 1)
 
+        self.addTextQuestion = QPushButton(self.tab)
+        self.addTextQuestion.setObjectName(u"addTextQuestion")
+
+        self.gridLayout_3.addWidget(self.addTextQuestion, 1, 0, 1, 1)
+
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
@@ -235,6 +240,7 @@ class Ui_StackedWidget(object):
         self.student_button.setText(QCoreApplication.translate("StackedWidget", u"Take a test", None))
         self.dockWidget.setWindowTitle(QCoreApplication.translate("StackedWidget", u"Test editor", None))
         self.addSingleButton.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
+        self.addTextQuestion.setText(QCoreApplication.translate("StackedWidget", u"PushButton", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("StackedWidget", u"Tab 1", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("StackedWidget", u"Tab 2", None))
         self.back_button_editor.setText(QCoreApplication.translate("StackedWidget", u"< Back", None))

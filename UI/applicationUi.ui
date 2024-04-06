@@ -191,23 +191,30 @@ color: white</string>
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="add_questions_tab">
            <attribute name="title">
-            <string>Tab 1</string>
+            <string>Questions</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="0" column="0">
              <widget class="QPushButton" name="addSingleButton">
               <property name="text">
-               <string>PushButton</string>
+               <string>Add choice question</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="addTextQuestion">
+              <property name="text">
+               <string>Add text question</string>
               </property>
              </widget>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_2">
+          <widget class="QWidget" name="settings_tab">
            <attribute name="title">
-            <string>Tab 2</string>
+            <string>Settings</string>
            </attribute>
           </widget>
          </widget>

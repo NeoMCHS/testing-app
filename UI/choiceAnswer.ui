@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>answer_choice</class>
- <widget class="QWidget" name="answer_choice">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -32,13 +32,19 @@ border-color: rgb(192, 192, 192);</string>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QCheckBox" name="is_right">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
      <property name="text">
       <string/>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="answer_choice_edit">
+    <widget class="QPlainTextEdit" name="answer_choice_edit">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -47,12 +53,21 @@ border-color: rgb(192, 192, 192);</string>
      </property>
      <property name="maximumSize">
       <size>
-       <width>16777215</width>
+       <width>15000000</width>
        <height>30</height>
+      </size>
+     </property>
+     <property name="sizeIncrement">
+      <size>
+       <width>0</width>
+       <height>0</height>
       </size>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(97, 97, 97);</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
     </widget>
    </item>
