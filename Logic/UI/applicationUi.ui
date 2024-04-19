@@ -198,15 +198,21 @@ color: white</string>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="0" column="0">
              <widget class="QPushButton" name="addSingleButton">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
               <property name="text">
-               <string>Add choice question</string>
+               <string>Choice question</string>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
              <widget class="QPushButton" name="addTextQuestion">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
               <property name="text">
-               <string>Add text question</string>
+               <string>Free form question</string>
               </property>
              </widget>
             </item>

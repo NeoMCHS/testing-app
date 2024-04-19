@@ -16,9 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QHBoxLayout,
-    QLabel, QPlainTextEdit, QPushButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QTextEdit, QVBoxLayout,
-    QWidget)
+    QLabel, QPlainTextEdit, QScrollArea, QSizePolicy,
+    QSpacerItem, QTextEdit, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -114,7 +113,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 472, 139))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 472, 145))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.answers_area = QVBoxLayout()
@@ -157,34 +156,8 @@ class Ui_Form(object):
         self.bottom_bar = QWidget(Form)
         self.bottom_bar.setObjectName(u"bottom_bar")
         self.bottom_bar.setMinimumSize(QSize(0, 30))
-        self.horizontalLayout_4 = QHBoxLayout(self.bottom_bar)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.delete_button = QPushButton(self.bottom_bar)
-        self.delete_button.setObjectName(u"delete_button")
-        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
-"color: rgb(0, 0, 0);")
-
-        self.horizontalLayout_4.addWidget(self.delete_button)
-
-        self.remove_answer_button = QPushButton(self.bottom_bar)
-        self.remove_answer_button.setObjectName(u"remove_answer_button")
-        self.remove_answer_button.setStyleSheet(u"background-color: rgb(97, 97, 97);")
-
-        self.horizontalLayout_4.addWidget(self.remove_answer_button)
-
-        self.add_answer_button = QPushButton(self.bottom_bar)
-        self.add_answer_button.setObjectName(u"add_answer_button")
-        self.add_answer_button.setStyleSheet(u"background-color: rgb(97, 97, 97);")
-
-        self.horizontalLayout_4.addWidget(self.add_answer_button)
-
-        self.validate_button = QPushButton(self.bottom_bar)
-        self.validate_button.setObjectName(u"validate_button")
-        self.validate_button.setStyleSheet(u"background-color: rgb(86, 73, 255);\n"
-"color: rgb(255, 255, 255);")
-
-        self.horizontalLayout_4.addWidget(self.validate_button)
-
+        self.bottom_bar_layout = QHBoxLayout(self.bottom_bar)
+        self.bottom_bar_layout.setObjectName(u"bottom_bar_layout")
 
         self.question_area.addWidget(self.bottom_bar)
 
@@ -201,9 +174,5 @@ class Ui_Form(object):
 
         self.label.setText(QCoreApplication.translate("Form", u"Points for question:", None))
         self.is_right.setText("")
-        self.delete_button.setText(QCoreApplication.translate("Form", u"Delete", None))
-        self.remove_answer_button.setText(QCoreApplication.translate("Form", u"Remove answer", None))
-        self.add_answer_button.setText(QCoreApplication.translate("Form", u"Add answer", None))
-        self.validate_button.setText(QCoreApplication.translate("Form", u"Confirm", None))
     # retranslateUi
 

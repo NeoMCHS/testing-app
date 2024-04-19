@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QPlainTextEdit,
-    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
-    QTextEdit, QVBoxLayout, QWidget)
+    QScrollArea, QSizePolicy, QSpacerItem, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -104,22 +104,8 @@ class Ui_Form(object):
         self.bottom_bar = QWidget(Form)
         self.bottom_bar.setObjectName(u"bottom_bar")
         self.bottom_bar.setMinimumSize(QSize(0, 30))
-        self.horizontalLayout_4 = QHBoxLayout(self.bottom_bar)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.delete_button = QPushButton(self.bottom_bar)
-        self.delete_button.setObjectName(u"delete_button")
-        self.delete_button.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
-"color: rgb(0, 0, 0);")
-
-        self.horizontalLayout_4.addWidget(self.delete_button)
-
-        self.validate_button = QPushButton(self.bottom_bar)
-        self.validate_button.setObjectName(u"validate_button")
-        self.validate_button.setStyleSheet(u"background-color: rgb(86, 73, 255);\n"
-"color: rgb(255, 255, 255);")
-
-        self.horizontalLayout_4.addWidget(self.validate_button)
-
+        self.bottom_bar_layout = QHBoxLayout(self.bottom_bar)
+        self.bottom_bar_layout.setObjectName(u"bottom_bar_layout")
 
         self.question_area.addWidget(self.bottom_bar)
 
@@ -132,7 +118,5 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label.setText(QCoreApplication.translate("Form", u"Points for question:", None))
-        self.delete_button.setText(QCoreApplication.translate("Form", u"Delete", None))
-        self.validate_button.setText(QCoreApplication.translate("Form", u"Confirm", None))
     # retranslateUi
 

@@ -204,30 +204,7 @@ color: rgb(255, 255, 255);</string>
        <height>30</height>
       </size>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QPushButton" name="delete_button">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 0, 0);
-color: rgb(0, 0, 0);</string>
-        </property>
-        <property name="text">
-         <string>Delete</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="validate_button">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(86, 73, 255);
-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string>Confirm</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <layout class="QHBoxLayout" name="bottom_bar_layout"/>
     </widget>
    </item>
   </layout>
