@@ -109,7 +109,6 @@ def generate_json_text(target):
         dict = {'content': answer, 'isCorrect': True}
         json_answers.append(dict)
     final_obj = json.dumps({"question": question_text, "points_destribution": "text_question", "total_point": total_points, "answers": json_answers})
-    print(final_obj)
     return final_obj
 
 def create_text_question():

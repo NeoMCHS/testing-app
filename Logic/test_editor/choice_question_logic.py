@@ -36,6 +36,7 @@ class DeletePushButton(QPushButton):
 class AddAnswerPushButton(QPushButton):
     def __init__(self, name):
         super().__init__(name)
+        self.setObjectName("add_answer_button")
 
     def mousePressEvent(self, pos):
         target = self.parent().parent()
@@ -141,7 +142,6 @@ def generate_json_choice(target):
     index = get_index()
     correct_answers_indexes = get_right_answers_choice()
     answers = get_answers_choice()
-    print(answers)
     json_answers = []
     for answer_index in range(len(answers)):
         answer = answers[answer_index]
@@ -151,13 +151,12 @@ def generate_json_choice(target):
             is_correct = False
         dict = {'content': answer, 'isCorrect': is_correct}
         json_answers.append(dict)
-        print(dict)
     question = main_ui.test_area.itemAt(index).widget()
     question_text = question.findChildren(QTextEdit, "question_text_field")[0].toPlainText()
     point_distrbution = get_points_destribution_choice()
     total_points = get_total_points()
     final_obj = json.dumps({"question": question_text, "points_destribution": point_distrbution, "total_point": total_points, "answers": json_answers})
-    print(final_obj)
+    return final_obj
 
 def create_choice_question():
     global question_count

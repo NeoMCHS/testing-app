@@ -1,5 +1,25 @@
 {
     "files": [
-        "main.py"
+        "main.py",
+        "Logic/app.py",
+        "Logic/setup.py",
+        "Logic/__init__.py",
+        "Logic/test_editor/choice_question_logic.py",
+        "Logic/test_editor/editing_logic.py",
+        "Logic/test_editor/test_settings_logic.py",
+        "Logic/test_editor/text_question_logic.py",
+        "Logic/test_editor/utility.py",
+        "Logic/test_viewer/connection_validation_logic.py",
+        "Logic/UI/applicationUi.py",
+        "Logic/UI/applicationUi.ui",
+        "Logic/UI/choiceAnswer.py",
+        "Logic/UI/choiceAnswer.ui",
+        "Logic/UI/errorDialog.py",
+        "Logic/UI/errorDialog.ui",
+        "Logic/UI/questionChoice.py",
+        "Logic/UI/questionChoice.ui",
+        "Logic/UI/questionText.py",
+        "Logic/UI/questionText.ui",
+        "Logic/UI/test.ui"
     ]
 }
