@@ -20,7 +20,6 @@ class ValidationPushButton(QPushButton):
         for i in range(main_ui.test_area.count()):
             if main_ui.test_area.itemAt(i).widget() == target:
                 validate_function_choice(i)
-                print("hit")
 
 class DeletePushButton(QPushButton):
     def __init__(self, name):
@@ -30,8 +29,7 @@ class DeletePushButton(QPushButton):
         target = self.parent().parent()
         for i in range(main_ui.test_area.count()):
             if main_ui.test_area.itemAt(i).widget() == target:
-                remove_question()
-                print("hit")
+                remove_question(i)
 
 class AddAnswerPushButton(QPushButton):
     def __init__(self, name):
@@ -47,7 +45,6 @@ class AddAnswerPushButton(QPushButton):
                 if main_ui.test_area.itemAt(i).widget().findChildren(QVBoxLayout, "answers_area")[0].count() == 5:
                     self.setEnabled(False)
                 add_answer_choice()
-                print("hit")
 
 class RemoveAnwerPushButton(QPushButton):
     def __init__(self, name):
@@ -64,7 +61,6 @@ class RemoveAnwerPushButton(QPushButton):
                 if main_ui.test_area.itemAt(i).widget().findChildren(QVBoxLayout, "answers_area")[0].count() <= 6:
                     main_ui.test_area.itemAt(i).widget().findChildren(QPushButton, "add_answer_button")[0].setEnabled(True)
                 remove_answer_choice()
-                print("hit")
 
 def get_right_answers_choice():
     index = get_index()
@@ -104,34 +100,34 @@ def check_answers_choice():
     question = main_ui.test_area.itemAt(index).widget()
     answer_area = question.findChildren(QVBoxLayout, "answers_area")[0]
     if answer_area.count() == 1:
-        show_error_dialog("Only one answer choice present", "This question wouldn't be very challenging")
+        show_dialog("Only one answer choice present", "This question wouldn't be very challenging")
         return False
     for i in range(answer_area.count()):
         answer_text = answer_area.itemAt(i).widget().findChildren(QWidget, "answer_choice_edit")[0].toPlainText()
         if answer_text == "":
-            show_error_dialog("Remove blank answer", "All answers must be non-blank")
+            show_dialog("Remove blank answer", "All answers must be non-blank")
             return False
         if answer_text.isspace() == True:
-            show_error_dialog("Remove blank answer", "All answers must be non-blank")
+            show_dialog("Remove blank answer", "All answers must be non-blank")
             return False
     return True
 
-def validate_question_choice():
+def validate_question_choice(target):
     if check_blank_question() == False:
-        show_error_dialog("There is no question", "You should probably write the question before trying to submit it")
+        show_dialog("There is no question", "You should probably write the question before trying to submit it")
         return False
     if check_answers_choice() == False:
         return False
     if get_right_answers_choice() == None:
-        show_error_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
+        show_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
         return False
-    if get_total_points() == None:
-        show_error_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
+    if get_total_points(target) == None:
+        show_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
         return False
     return True
 
 def validate_function_choice(target):
-    if validate_question_choice() == True:
+    if validate_question_choice(target) == True:
         generate_json_choice(target)
         create_edit_button_target(target)
         disable_question_editing()
@@ -154,7 +150,7 @@ def generate_json_choice(target):
     question = main_ui.test_area.itemAt(index).widget()
     question_text = question.findChildren(QTextEdit, "question_text_field")[0].toPlainText()
     point_distrbution = get_points_destribution_choice()
-    total_points = get_total_points()
+    total_points = get_total_points(target)
     final_obj = json.dumps({"question": question_text, "points_destribution": point_distrbution, "total_point": total_points, "answers": json_answers})
     return final_obj
 
@@ -187,16 +183,62 @@ def create_choice_question():
     single_choice_question_ui.bottom_bar_layout.addWidget(validation_button)
     #single_choice_question_ui.validate_button.clicked.connect(lambda: validate_function_choice(index))
     main_ui.test_area.addWidget(question)
-    #single_choice_question_ui.delete_button.clicked.connect(remove_question)
     main_ui.addTextQuestion.setEnabled(False)
     main_ui.addSingleButton.setEnabled(False)
-    add_image_button = QPushButton("Add an image")
-    add_image_button.clicked.connect(add_image)
-    add_image_button.setObjectName("add_image_button")
-    print(index)
-    question = main_ui.test_area.itemAt(index).widget()
-    print(index)
-    question.findChildren(QVBoxLayout, "question_area")[0].addWidget(add_image_button)
+#    add_image_button = QPushButton("Add an image")
+#    add_image_button.clicked.connect(add_image)
+#    add_image_button.setObjectName("add_image_button")
+#    print(index)
+#    question = main_ui.test_area.itemAt(index).widget()
+#    print(index)
+#    question.findChildren(QVBoxLayout, "question_area")[0].addWidget(add_image_button)
+
+def load_choice_question(iteration, question_text, points_destribution, total_point, answers):
+    global question_count
+    question = QWidget()
+    add_to_question_count()
+    force_set_index(iteration)
+    index = get_index()
+    single_choice_question_ui.setupUi(question)
+    question.setObjectName(f"choice_question")
+    delete_button = DeletePushButton("delete_button")
+    delete_button.setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0);")
+    delete_button.setText("Delete")
+    single_choice_question_ui.bottom_bar_layout.addWidget(delete_button)
+    remove_answer_button = RemoveAnwerPushButton("remove_answer_button")
+    remove_answer_button.setStyleSheet("background-color: rgb(97, 97, 97);")
+    remove_answer_button.setObjectName("remove_answer_button")
+    remove_answer_button.setText("Remove answer")
+    single_choice_question_ui.bottom_bar_layout.addWidget(remove_answer_button)
+    add_answer_button = AddAnswerPushButton("add_answer_button")
+    add_answer_button.setStyleSheet("background-color: rgb(97, 97, 97);")
+    add_answer_button.setObjectName("add_answer_button")
+    add_answer_button.setText("Add answer")
+    single_choice_question_ui.bottom_bar_layout.addWidget(add_answer_button)
+    validation_button = ValidationPushButton("validation_button")
+    validation_button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
+    validation_button.setText("Validate")
+    single_choice_question_ui.bottom_bar_layout.addWidget(validation_button)
+    #single_choice_question_ui.validate_button.clicked.connect(lambda: validate_function_choice(index))
+    main_ui.test_area.addWidget(question)
+    main_ui.addTextQuestion.setEnabled(False)
+    main_ui.addSingleButton.setEnabled(False)
+    single_choice_question_ui.question_text_field.setText(question_text)
+    single_choice_question_ui.total_points.setPlainText(str(total_point))
+    single_choice_question_ui.answer_choice.setParent(None)
+    if points_destribution == "concentrate":
+        destribution_index = 1
+    if points_destribution == "split":
+        destribution_index = 0
+    single_choice_question_ui.point_destribution.setCurrentIndex(destribution_index)
+    for answer in answers:
+        answer = list(answer.values())
+        content = answer[0]
+        print(content)
+        isCorrect = answer[1]
+        print(isCorrect)
+        load_answer_choice(content, isCorrect)
+    validate_function_choice(index)
 
 def remove_answer_choice():
     index = get_index()
@@ -215,8 +257,18 @@ def add_answer_choice():
     answer_choice.setObjectName(f"answer_widget")
     answer_area.addWidget(answer_choice)
 
-def remove_question():
+def load_answer_choice(content, isCorrect):
     index = get_index()
+    item = main_ui.test_area.itemAt(index).widget()
+    answer_area = item.findChildren(QVBoxLayout, "answers_area")[0]
+    answer_choice = QWidget()
+    answer_choice_ui.setupUi(answer_choice)
+    answer_choice.setObjectName(f"answer_widget")
+    answer_choice_ui.answer_choice_edit.setPlainText(content)
+    answer_choice_ui.is_right.setChecked(bool(isCorrect))
+    answer_area.addWidget(answer_choice)
+
+def remove_question(index):
     global question_count
     #print(str(question_count)+" -> "+str(question_count - 1))
     substract_from_question_count()

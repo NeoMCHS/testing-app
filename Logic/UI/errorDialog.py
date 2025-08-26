@@ -16,7 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QLabel, QSizePolicy, QWidget)
+    QFrame, QLabel, QSizePolicy, QTextBrowser,
+    QWidget)
 
 class Ui_dialog(object):
     def setupUi(self, dialog):
@@ -39,12 +40,10 @@ class Ui_dialog(object):
         font.setPointSize(17)
         self.header_label.setFont(font)
         self.header_label.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.description_label = QLabel(dialog)
+        self.description_label = QTextBrowser(dialog)
         self.description_label.setObjectName(u"description_label")
-        self.description_label.setGeometry(QRect(50, 60, 281, 81))
-        self.description_label.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.description_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.description_label.setWordWrap(True)
+        self.description_label.setGeometry(QRect(50, 70, 281, 81))
+        self.description_label.setFrameShape(QFrame.NoFrame)
 
         self.retranslateUi(dialog)
         self.buttonBox.accepted.connect(dialog.accept)
@@ -56,6 +55,5 @@ class Ui_dialog(object):
     def retranslateUi(self, dialog):
         dialog.setWindowTitle(QCoreApplication.translate("dialog", u"Dialog", None))
         self.header_label.setText(QCoreApplication.translate("dialog", u"Connection failure", None))
-        self.description_label.setText(QCoreApplication.translate("dialog", u"Something went wrong :(", None))
     # retranslateUi
 

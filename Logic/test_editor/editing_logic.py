@@ -1,6 +1,3 @@
-import sys
-import re
-import json
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QApplication, QMainWindow, QStackedWidget, QDialog, QDockWidget, QWidget, 
                                QVBoxLayout, QTextEdit, QCheckBox, QPlainTextEdit, QComboBox, QPushButton)
@@ -84,10 +81,12 @@ def remove_edit_button_target(target):
     edit_button.setParent(None)
 
 def disable_question_creation():
+    main_ui.save_test.setEnabled(False)
     main_ui.addSingleButton.setEnabled(False)
     main_ui.addTextQuestion.setEnabled(False)
 
 def enable_question_creation():
+    main_ui.save_test.setEnabled(True)
     main_ui.addSingleButton.setEnabled(True)
     main_ui.addTextQuestion.setEnabled(True)
 

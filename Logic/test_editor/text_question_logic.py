@@ -22,8 +22,7 @@ class ValidationPushButton(QPushButton):
         for i in range(main_ui.test_area.count()):
             print(i)
             if main_ui.test_area.itemAt(i).widget() == target:
-                validate_function_text()
-                print("hit")
+                validate_function_text(i)
 
 class DeletePushButton(QPushButton):
     def __init__(self, name):
@@ -34,8 +33,7 @@ class DeletePushButton(QPushButton):
         for i in range(main_ui.test_area.count()):
             print(i)
             if main_ui.test_area.itemAt(i).widget() == target:
-                remove_question()
-                print("hit")
+                remove_question(i)
 
 def find_index(e):
     print(e)
@@ -53,8 +51,7 @@ def get_right_answers_text():
     answers_raw = question.findChildren(QTextEdit, "text_answers")[0].toPlainText()
     return answers_raw.split(",")
 
-def check_blank_question():
-    index = get_index()
+def check_blank_question(index):
     question = main_ui.test_area.itemAt(index).widget()
     question_text = question.findChildren(QTextEdit, "question_text_field")[0].toPlainText()
     if question_text == "":
@@ -63,9 +60,7 @@ def check_blank_question():
         return False
     return True
 
-def check_answers_text():
-    global index
-    index = get_index()
+def check_answers_text(index):
     question = main_ui.test_area.itemAt(index).widget()
     answers = question.findChildren(QTextEdit, "text_answers")[0].toPlainText()
     print(answers)
@@ -77,21 +72,20 @@ def check_answers_text():
     else:
         return True
     
-def validate_question_text():
-    if check_blank_question() == False:
-        show_error_dialog("There is no question", "You should probably write the question before trying to submit it")
+def validate_question_text(target):
+    if check_blank_question(target) == False:
+        show_dialog("There is no question", "You should probably write the question before trying to submit it")
         return False
-    if check_answers_text() == False:
-        show_error_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
+    if check_answers_text(target) == False:
+        show_dialog("No correct answer set", "For a question to be valid at least one right answer must exist")
         return False
-    if get_total_points() == None:
-        show_error_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
+    if get_total_points(target) == None:
+        show_dialog("Total points incorrect", "Total amount of points must be a positive whole number")
         return False
     return True
 
-def validate_function_text():
-    target = get_index()
-    if validate_question_text() == True:
+def validate_function_text(target):
+    if validate_question_text(target) == True:
         generate_json_text(target)
         create_edit_button_target(target)
         disable_question_editing()
@@ -103,7 +97,7 @@ def generate_json_text(target):
     answers = get_right_answers_text()
     question = main_ui.test_area.itemAt(index).widget()
     question_text = question.findChildren(QTextEdit, "question_text_field")[0].toPlainText()
-    total_points = get_total_points()
+    total_points = get_total_points(target)
     json_answers = []
     for answer in answers:
         dict = {'content': answer, 'isCorrect': True}
@@ -130,16 +124,50 @@ def create_text_question():
     text_question_ui.bottom_bar_layout.addWidget(validation_button)
     main_ui.addTextQuestion.setEnabled(False)
     main_ui.addSingleButton.setEnabled(False)
-    add_image_button = QPushButton("Add an image")
-    add_image_button.clicked.connect(add_image)
-    add_image_button.setObjectName("add_image_button")
-    question = main_ui.test_area.itemAt(index).widget()
-    question.findChildren(QVBoxLayout, "question_area")[0].addWidget(add_image_button)
+#    add_image_button = QPushButton("Add an image")
+#    add_image_button.clicked.connect(add_image)
+#    add_image_button.setObjectName("add_image_button")
+#    question = main_ui.test_area.itemAt(index).widget()
+#    question.findChildren(QVBoxLayout, "question_area")[0].addWidget(add_image_button)
 
-def remove_question():
-    global index
+def load_text_question(iteration, question_text, total_points, answers):
     global question_count
+    question = QWidget()
+    add_to_question_count()
+    force_set_index(iteration)
     index = get_index()
+    main_ui.test_area.addWidget(question)
+    text_question_ui.setupUi(question)
+    question.setObjectName("text_question")
+    delete_button = DeletePushButton("delete_button")
+    delete_button.setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0);")
+    delete_button.setText("Delete")
+    text_question_ui.bottom_bar_layout.addWidget(delete_button)
+    validation_button = ValidationPushButton("validation_button")
+    validation_button.setStyleSheet("background-color: rgb(86, 73, 255); color: rgb(255, 255, 255);")
+    validation_button.setText("Validate")
+    text_question_ui.bottom_bar_layout.addWidget(validation_button)
+    main_ui.addTextQuestion.setEnabled(False)
+    main_ui.addSingleButton.setEnabled(False)
+    text_question_ui.question_text_field.setText(question_text)
+    text_question_ui.total_points.setPlainText(str(total_points))
+    text_question_ui.text_answers.setText(load_answers(answers))
+#    add_image_button = QPushButton("Add an image")
+#    add_image_button.clicked.connect(add_image)
+#    add_image_button.setObjectName("add_image_button")
+#    question = main_ui.test_area.itemAt(index).widget()
+#    question.findChildren(QVBoxLayout, "question_area")[0].addWidget(add_image_button)
+    validate_function_text(index)
+    
+
+def load_answers(answers):
+    answer_string = ""
+    for answer in answers:
+        answer_string = answer_string + "," + list(answer.values())[0]
+    return answer_string
+
+
+def remove_question(index):
     #print(str(question_count)+" -> "+str(question_count - 1))
     substract_from_question_count()
     item = main_ui.test_area.itemAt(index).widget()
@@ -148,13 +176,3 @@ def remove_question():
     main_ui.addTextQuestion.setEnabled(True)
     update_edit_buttons_on_delete()
     #main_ui.test_area.removeItem(item)
-
-def add_image():
-    #TODO convert the image into a datastring that can be displayed using HTML. You can use base64 module to do that
-    #Also you need to make sure that only ONE image is added to any question. As for the UI component you need to 
-    #make the button change if an image is successfuly added. Think of a way to display the added image. 
-    file_dialog = QFileDialog()
-    file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
-    file_dialog.setViewMode(QFileDialog.Detail)
-    if file_dialog.exec():
-        file_path = file_dialog.selectedFiles()[0]

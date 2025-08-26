@@ -68,26 +68,17 @@
     <string>Connection failure</string>
    </property>
   </widget>
-  <widget class="QLabel" name="description_label">
+  <widget class="QTextBrowser" name="description_label">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>60</y>
+     <y>70</y>
      <width>281</width>
      <height>81</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>Something went wrong :(</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
    </property>
   </widget>
  </widget>
